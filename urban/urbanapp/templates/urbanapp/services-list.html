@@ -1,0 +1,460 @@
+{% extends 'urbanapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <!-- Breadcrumb -->
+	<div class="breadcrumb-bar text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-12">
+					<h2 class="breadcrumb-title mb-2">Services</h2>
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb justify-content-center mb-0">
+							<li class="breadcrumb-item"><a href="index-2.html"><i class="ti ti-home-2"></i></a></li>
+							<li class="breadcrumb-item active" aria-current="page">Services</li>
+						</ol>
+					</nav>
+				</div>
+			</div>
+			<div class="breadcrumb-bg">
+				<img src="assets/img/bg/breadcrumb-bg-01.png" class="breadcrumb-bg-1" alt="Img">
+				<img src="assets/img/bg/breadcrumb-bg-02.png" class="breadcrumb-bg-2" alt="Img">
+			</div>
+		</div>
+	</div>
+	<!-- /Breadcrumb -->
+
+    <!-- Page Wrapper -->
+     <div class="page-wrapper">
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 theiaStickySidebar">
+						<div class="card mb-4 mb-lg-0">
+							<div class="card-body">
+								<form action="https://truelysell.dreamstechnologies.com/html/template/search.html">
+									<div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom">
+										<h5><i class="ti ti-filter-check me-2"></i>Filters</h5>
+										<a href="javascript:void(0);">Reset Filter</a>
+									</div>
+									<div class="mb-3 pb-3 border-bottom">
+										<label class="form-label">Search By Keyword</label>
+										<input type="text" class="form-control" placeholder="What are you looking for?">
+									</div>
+									<div class="accordion border-bottom mb-3">
+										<div class="accordion-item mb-3">
+											<div class="accordion-header" id="accordion-headingThree">
+												<div class="accordion-button p-0 mb-3" data-bs-toggle="collapse" data-bs-target="#accordion-collapseThree" aria-expanded="true" aria-controls="accordion-collapseThree" role="button">
+													Categories
+												</div>
+											</div>
+											<div id="accordion-collapseThree" class="accordion-collapse collapse show" aria-labelledby="accordion-headingThree">
+												<div class="content-list mb-3" id="fill-more">
+													<div class="form-check mb-2" >
+														<label class="form-check-label">
+															<input class="form-check-input" type="checkbox" checked>
+															All Categories
+														</label>
+													</div>
+													<div class="form-check mb-2">
+														<label class="form-check-label">
+															<input class="form-check-input" type="checkbox">
+															Construction
+														</label>
+													</div>
+													<div class="form-check mb-2">
+														<label class="form-check-label">
+															<input class="form-check-input" type="checkbox">
+															Car Wash
+														</label>
+													</div>
+													<div class="form-check mb-2">
+														<label class="form-check-label">
+															<input class="form-check-input" type="checkbox">
+															Electrical
+														</label>
+													</div>
+													<div class="form-check mb-2">
+														<label class="form-check-label">
+															<input class="form-check-input" type="checkbox">
+															Cleaning
+														</label>
+													</div>
+													<div class="form-check mb-2">
+														<label class="form-check-label">
+															<input class="form-check-input" type="checkbox">
+															Plumbing
+														</label>
+													</div>
+													<div class="form-check mb-2">
+														<label class="form-check-label">
+															<input class="form-check-input" type="checkbox">
+															Designing
+														</label>
+													</div>
+												</div>
+												<a href="javascript:void(0);" id="more" class="more-view text-primary fs-14">View more <i class="ti ti-chevron-down ms-1"></i></a>
+											</div>
+										</div>
+									</div>
+									<div class="accordion border-bottom mb-3">
+										<div class="accordion-header" id="accordion-headingFour">
+											<div class="accordion-button p-0 mb-3" data-bs-toggle="collapse" data-bs-target="#accordion-collapseFour" aria-expanded="true" aria-controls="accordion-collapseFour" role="button">
+												Sub Category
+											</div>
+										</div>
+										<div id="accordion-collapseFour" class="accordion-collapse collapse show" aria-labelledby="accordion-headingFour">
+											<div class="mb-3">
+												<select class="select">
+													<option selected>Select Sub Category</option>
+													<option>Car Wash</option>
+													<option>Construction</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="accordion border-bottom mb-3">
+										<div class="accordion-header" id="accordion-headingFive">
+											<div class="accordion-button p-0 mb-3" data-bs-toggle="collapse" data-bs-target="#accordion-collapseFive" aria-expanded="true" aria-controls="accordion-collapseFive" role="button">
+												Location
+											</div>
+										</div>
+										<div id="accordion-collapseFive" class="accordion-collapse collapse show" aria-labelledby="accordion-headingFive">
+											<div class="mb-3">
+												<div class="position-relative">
+													<input type="text" class="form-control" placeholder="Select Location">
+													<span class="icon-addon"><i class="ti ti-map-pin"></i></span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="accordion border-bottom mb-3">
+										<div class="accordion-header" id="accordion-headingSix">
+											<div class="accordion-button p-0 mb-3" data-bs-toggle="collapse" data-bs-target="#accordion-collapseSix" aria-expanded="true" aria-controls="accordion-collapseSix" role="button">
+												Price Range
+											</div>
+										</div>
+										<div id="accordion-collapseSix" class="accordion-collapse collapse show" aria-labelledby="accordion-headingSix">
+											<div class="filter-range">
+												<input type="text" id="range_03">
+											</div>
+											<div class="filter-range-amount mb-3">
+												<p class="fs-14">Price: <span>$5 - $210</span></p>
+											</div>
+										</div>
+									</div>
+									<div class="accordion">
+										<div class="accordion-item mb-3">
+											<div class="accordion-header" id="accordion-headingTwo">
+												<div class="accordion-button fs-18 p-0 mb-3" data-bs-toggle="collapse" data-bs-target="#accordion-collapseTwo" aria-expanded="true" aria-controls="accordion-collapseTwo" role="button">
+													Ratings
+												</div>
+											</div>
+											<div id="accordion-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="accordion-headingTwo">
+												<div class="mb-3">
+													<div class="form-check mb-2">
+														<label class="form-check-label d-block">
+															<input class="form-check-input" type="checkbox" checked>
+															<span class="rating">
+																<i class="fas fa-star filled"></i>
+																<i class="fas fa-star filled"></i>
+																<i class="fas fa-star filled"></i>
+																<i class="fas fa-star filled"></i>
+																<i class="fas fa-star filled"></i><span class="float-end">(55)</span>
+															</span>
+														</label>
+													</div>
+													<div class="form-check mb-2">
+														<label class="form-check-label d-block">
+															<input class="form-check-input" type="checkbox">
+															<span class="rating">
+																<i class="fas fa-star filled"></i>
+																<i class="fas fa-star filled"></i>
+																<i class="fas fa-star filled"></i>
+																<i class="fas fa-star filled"></i>
+																<i class="fa-regular fa-star filled"></i><span class="float-end">(48)</span>
+															</span>
+														</label>
+													</div>
+													<div class="form-check mb-2">
+														<label class="form-check-label d-block">
+															<input class="form-check-input" type="checkbox">
+															<span class="rating">
+																<i class="fas fa-star filled"></i>
+																<i class="fas fa-star filled"></i>
+																<i class="fas fa-star filled"></i>
+																<i class="fa-regular fa-star filled"></i>
+																<i class="fa-regular fa-star filled"></i><span class="float-end">(13)</span>
+															</span>
+														</label>
+													</div>
+													<div class="form-check mb-2">
+														<label class="form-check-label d-block">
+															<input class="form-check-input" type="checkbox">
+															<span class="rating">
+																<i class="fas fa-star filled"></i>
+																<i class="fas fa-star filled"></i>
+																<i class="fa-regular fa-star filled"></i>
+																<i class="fa-regular fa-star filled"></i>
+																<i class="fa-regular fa-star filled"></i><span class="float-end">(05)</span>
+															</span>
+														</label>
+													</div>
+													<div class="form-check mb-2">
+														<label class="form-check-label d-block">
+															<input class="form-check-input" type="checkbox">
+															<span class="rating">
+																<i class="fas fa-star filled"></i>
+																<i class="fa-regular fa-star filled"></i>
+																<i class="fa-regular fa-star filled"></i>
+																<i class="fa-regular fa-star filled"></i>
+																<i class="fa-regular fa-star filled"></i><span class="float-end">(00)</span>
+															</span>
+														</label>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<button type="submit" class="btn btn-dark w-100">Search</button>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-9 col-lg-8">
+						<div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+							<h4 >Found <span class="text-primary">11 Services</span></h4>
+							<div class="d-flex align-items-center">
+								<span class="text-dark me-2">Sort</span>
+								<div class="dropdown me-2">
+									<a href="javascript:void(0);" class="dropdown-toggle bg-light-300 " data-bs-toggle="dropdown">
+										Price Low to High
+									</a>
+									<div class="dropdown-menu">
+										<a href="javascript:void(0);" class="dropdown-item active">Price Low to High</a>
+										<a href="javascript:void(0);" class="dropdown-item">Price High to Low</a>
+									</div>
+								</div>
+								<a href="services-grid.html" class="tags d-flex justify-content-center align-items-center rounded me-2"><i class="ti ti-layout-grid"></i></a>
+								<a href="services-list.html" class="tags d-flex justify-content-center align-items-center border bg-primary rounded"><i class="ti ti-list"></i></a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+
+								<!-- Service List -->
+								<div class="service-list">
+									<div class="service-cont">
+										<div class="service-cont-img">
+											<a href="service-details.html">
+												<img class="img-fluid serv-img" alt="Service Image" src="assets/img/services/service-04.jpg">
+											</a>
+											<div class="fav-item">
+												<a href="javascript:void(0)" class="fav-icon">
+													<i class="feather-heart"></i>
+												</a>
+											</div>
+										</div>
+										<div class="service-cont-info">
+											<span class="badge bg-light fs-14 mb-2">Car Wash</span>
+											<h3 class="title">
+												<a href="service-details.html">Car Repair Services</a>
+											</h3>
+											<p><i class="feather-map-pin"></i>Maryland City, MD, USA</p>
+											<div class="service-pro-img">
+												<img src="assets/img/profiles/avatar-01.jpg" alt="user">
+												<span><i class="fas fa-star filled"></i>4.9</span>
+											</div>
+										</div>
+									</div>
+									<div class="service-action">
+										<h6>$25.00<span class="old-price">$35.00</span></h6>
+										<a href="booking.html" class="btn btn-light">Book Now</a>
+									</div>
+								</div>
+								<!-- /Service List -->
+
+								<!-- Service List -->
+								<div class="service-list">
+									<div class="service-cont">
+										<div class="service-cont-img">
+											<a href="service-details.html">
+												<img class="img-fluid serv-img" alt="Service Image" src="assets/img/services/service-02.jpg">
+											</a>
+											<div class="fav-item">
+												<a href="javascript:void(0)" class="fav-icon">
+													<i class="feather-heart"></i>
+												</a>
+											</div>
+										</div>
+										<div class="service-cont-info">
+											<span class="badge bg-light fs-14 mb-2">Construction</span>
+											<h3 class="title">
+												<a href="service-details.html">Toughened Glass Fitting Services</a>
+											</h3>
+											<p><i class="feather-map-pin"></i>New Jersey, USA</p>
+											<div class="service-pro-img">
+												<img src="assets/img/profiles/avatar-02.jpg" alt="User">
+												<span><i class="fas fa-star filled"></i>4.9</span>
+											</div>
+										</div>
+									</div>
+									<div class="service-action">
+										<h6>$30.00<span class="old-price">$35.00</span></h6>
+										<a href="booking.html" class="btn btn-light">Book Now</a>
+									</div>
+								</div>
+								<!-- /Service List -->
+
+								<!-- Service List -->
+								<div class="service-list">
+									<div class="service-cont">
+										<div class="service-cont-img">
+											<a href="service-details.html">
+												<img class="img-fluid serv-img" alt="Service Image" src="assets/img/services/service-06.jpg">
+											</a>
+											<div class="fav-item">
+												<a href="javascript:void(0)" class="fav-icon">
+													<i class="feather-heart"></i>
+												</a>
+											</div>
+										</div>
+										<div class="service-cont-info">
+											<span class="badge bg-light fs-14 mb-2">Computer</span>
+											<h3 class="title">
+												<a href="service-details.html">Computer &amp; Server AMC Service</a>
+											</h3>
+											<p><i class="feather-map-pin"></i>California, USA</p>
+											<div class="service-pro-img">
+												<img src="assets/img/profiles/avatar-05.jpg" alt="User">
+												<span><i class="fas fa-star filled"></i>4.9</span>
+											</div>
+										</div>
+									</div>
+									<div class="service-action">
+										<h6>$30.00<span class="old-price">$35.00</span></h6>
+										<a href="booking.html" class="btn btn-light">Book Now</a>
+									</div>
+								</div>
+								<!-- /Service List -->
+
+								<!-- Service List -->
+								<div class="service-list">
+									<div class="service-cont">
+										<div class="service-cont-img">
+											<a href="service-details.html">
+												<img class="img-fluid serv-img" alt="Service Image" src="assets/img/services/service-07.jpg">
+											</a>
+											<div class="fav-item">
+												<a href="javascript:void(0)" class="fav-icon">
+													<i class="feather-heart"></i>
+												</a>
+											</div>
+										</div>
+										<div class="service-cont-info">
+											<span class="badge bg-light fs-14 mb-2">Interior</span>
+											<h3 class="title">
+												<a href="service-details.html">Interior Designing</a>
+											</h3>
+											<p><i class="feather-map-pin"></i>Maryland, USA</p>
+											<div class="service-pro-img">
+												<img src="assets/img/profiles/avatar-06.jpg" alt="User">
+												<span><i class="fas fa-star filled"></i>4.9</span>
+											</div>
+										</div>
+									</div>
+									<div class="service-action">
+										<h6>$15.00<span class="old-price">$25.00</span></h6>
+										<a href="booking.html" class="btn btn-light">Book Now</a>
+									</div>
+								</div>
+								<!-- /Service List -->
+
+								<!-- Service List -->
+								<div class="service-list">
+									<div class="service-cont">
+										<div class="service-cont-img">
+											<a href="service-details.html">
+												<img class="img-fluid serv-img" alt="Service Image" src="assets/img/services/service-09.jpg">
+											</a>
+											<div class="fav-item">
+												<a href="javascript:void(0)" class="fav-icon">
+													<i class="feather-heart"></i>
+												</a>
+											</div>
+										</div>
+										<div class="service-cont-info">
+											<span class="badge bg-light fs-14 mb-2">Cleaning</span>
+											<h3 class="title">
+												<a href="service-details.html">House Cleaning Services</a>
+											</h3>
+											<p><i class="feather-map-pin"></i>Georgia</p>
+											<div class="service-pro-img">
+												<img src="assets/img/profiles/avatar-09.jpg" alt="User">
+												<span><i class="fas fa-star filled"></i>4.9</span>
+											</div>
+										</div>
+									</div>
+									<div class="service-action">
+										<h6>$55.00<span class="old-price">$60.00</span></h6>
+										<a href="booking.html" class="btn btn-light">Book Now</a>
+									</div>
+								</div>
+								<!-- /Service List -->
+
+								<!-- Service List -->
+								<div class="service-list">
+									<div class="service-cont">
+										<div class="service-cont-img">
+											<a href="service-details.html">
+												<img class="img-fluid serv-img" alt="Service Image" src="assets/img/services/service-10.jpg">
+											</a>
+											<div class="fav-item">
+												<a href="javascript:void(0)" class="fav-icon">
+													<i class="feather-heart"></i>
+												</a>
+											</div>
+										</div>
+										<div class="service-cont-info">
+											<span class="badge bg-light fs-14 mb-2">Construction</span>
+											<h3 class="title">
+												<a href="service-details.html">Building Construction Services</a>
+											</h3>
+											<p><i class="feather-map-pin"></i>Montana, USA</p>
+											<div class="service-pro-img">
+												<img src="assets/img/profiles/avatar-09.jpg" alt="User">
+												<span><i class="fas fa-star filled"></i>4.9</span>
+											</div>
+										</div>
+									</div>
+									<div class="service-action">
+										<h6>$45.00<span class="old-price">$50.00</span></h6>
+										<a href="booking.html" class="btn btn-light">Book Now</a>
+									</div>
+								</div>
+								<!-- /Service List -->
+
+							</div>
+						</div>
+						<nav aria-label="Page navigation">
+							<ul class="paginations d-flex justify-content-center align-items-center">
+							  <li class="page-item me-3">
+								<a class="page-link"><i class="ti ti-arrow-left me-2"></i>Prev</a>
+							  </li>
+							  <li class="page-item me-2"><a class="page-link-1 active d-flex justify-content-center align-items-center " href="javascript:void(0);">1</a></li>
+							  <li class="page-item me-2"><a class="page-link-1 d-flex justify-content-center align-items-center " href="javascript:void(0);">2</a></li>
+							  <li class="page-item me-3"><a class="page-link-1 d-flex justify-content-center align-items-center " href="javascript:void(0);">3</a></li>
+							  <li class="page-item ">
+								<a class="page-link" href="javascript:void(0);">Next<i class="ti ti-arrow-right ms-2"></i></a>
+							  </li>
+							</ul>
+						  </nav>
+					</div>
+                </div>
+            </div>
+        </div>
+     </div>
+     <!-- /Page Wrapper -->
+
+	{% endblock %}

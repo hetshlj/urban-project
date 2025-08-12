@@ -1,0 +1,136 @@
+{% extends 'urbanapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<body class="authentication-page ">
+	<div class="d-flex justify-content-between vh-100 overflow-auto flex-column">
+
+	<!-- Header -->
+	<div class="authentication-header">
+		<div class="container">
+			<div class="col-md-12">
+				<div class="text-center">
+					<img src="{% static 'assets/img/logo.svg' %}" alt="logo">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /Header -->
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+		<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-5 mx-auto">
+						<form method="post">
+							{% csrf_token %}
+							<div class="d-flex flex-column justify-content-center">
+								<div class="card p-sm-4 my-5">
+									<div class="card-body">
+										<div class="text-center mb-3">
+											<h3 class="mb-2">Welcome</h3>
+											<p>Enter your credentials to access your account</p>
+										</div>
+
+										<!-- Display messages -->
+										{% if messages %}
+											{% for message in messages %}
+												<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+													{{ message }}
+													<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+												</div>
+											{% endfor %}
+										{% endif %}
+
+										<div class="mb-3">
+											<label class="form-label">User Name</label>
+											<input type="text" class="form-control" name="username" required>
+										</div>
+										<div class="mb-3">
+											<div class="d-flex align-items-center justify-content-between flex-wrap">
+												<label class="form-label">Password</label>
+												<a href="forgot-password.html" class="text-primary fw-medium text-decoration-underline mb-1 fs-14">Forgot Password?</a>
+											</div>
+											<input type="password" class="form-control" name="password" required>
+										</div>
+										<div class="mb-3">
+											<div class="d-flex align-items-center justify-content-between flex-wrap row-gap-2">
+												<div class="form-check">
+													<input class="form-check-input" type="checkbox" value="" id="remember_me">
+													<label class="form-check-label" for="remember_me">
+														Remember Me
+													</label>
+												</div>
+												<div class="form-check">
+													<input class="form-check-input" type="checkbox" value="" id="otp_signin">
+													<label class="form-check-label" for="otp_signin">
+														Sign in with OTP
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="mb-3">
+											<button type="submit" class="btn btn-lg btn-linear-primary w-100">Sign In</button>
+										</div>
+										<div class="login-or mb-3">
+											<span class="span-or">Or sign in with </span>
+										</div>
+										<div class="d-flex align-items-center mb-3">
+											<a href="javascript:void(0);" class="btn btn-light flex-fill d-flex align-items-center justify-content-center me-3"><img src="assets/img/icons/google-icon.svg" class="me-2" alt="Img">Google</a>
+											<a href="javascript:void(0);" class="btn btn-light flex-fill d-flex align-items-center justify-content-center"><img src="assets/img/icons/fb-icon.svg" class="me-2" alt="Img">Facebook</a>
+										</div>
+										<div class="d-flex justify-content-center">
+											<p>Don’t have a account? <a href="register.html" class="text-primary"> Join us Today</a></p>
+										</div>
+									</div>
+									<div>
+										<img src="assets/img/bg/authentication-bg.png" class="bg-left-top" alt="Img">
+										<img src="assets/img/bg/authentication-bg.png" class="bg-right-bottom" alt="Img">
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+			</div>
+		</div>
+	</div>
+	<!-- /Main Wrapper -->
+
+	<!-- Footer -->
+	<div class="footer-copyright  bg-transparent">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<p>Copyright &copy; 2024. All Rights Reserved Truelysell</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /Footer -->
+
+</div>
+
+	<!-- Cursor -->
+	<div class="xb-cursor tx-js-cursor">
+        <div class="xb-cursor-wrapper">
+            <div class="xb-cursor--follower xb-js-follower"></div>
+        </div>
+    </div>
+	<!-- /Cursor -->
+
+	<!-- Jquery JS -->
+	<script src="assets/js/jquery-3.7.1.min.js" type="1a3da610a19a9f9021204bd0-text/javascript"></script>
+
+	<!-- Bootstrap JS -->
+	<script src="assets/js/bootstrap.bundle.min.js" type="1a3da610a19a9f9021204bd0-text/javascript"></script>
+
+
+	<!-- Script JS -->
+	<script src="assets/js/script.js" type="1a3da610a19a9f9021204bd0-text/javascript"></script>
+
+<script src="../../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="1a3da610a19a9f9021204bd0-|49" defer></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"961b842cb800a743","version":"2025.7.0","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"token":"3ca157e612a14eccbb30cf6db6691c29","b":1}' crossorigin="anonymous"></script>
+</body>
+
+<!-- Mirrored from truelysell.dreamstechnologies.com/html/template/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 19 Jul 2025 16:22:31 GMT -->
+</html>

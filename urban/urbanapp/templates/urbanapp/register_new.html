@@ -1,0 +1,120 @@
+{% extends 'urbanapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<body class="authentication-page">
+
+	<div class="d-flex justify-content-between vh-100 overflow-auto flex-column">
+
+	<!-- Header -->
+	<div class="authentication-header">
+		<div class="container">
+			<div class="col-md-12">
+				<div class="text-center">
+					<img src="{% static 'assets/img/logo.svg' %}" alt="logo">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /Header -->
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-5 mx-auto">
+					<form method="post">
+						{% csrf_token %}
+						<div class="d-flex flex-column justify-content-center">
+							<div class="card p-sm-4 my-5">
+								<div class="card-body">
+									<div class="text-center mb-3">
+										<h3 class="mb-2">User Signup</h3>
+										<p>Enter your credentials to create your account</p>
+									</div>
+
+									<!-- Display messages -->
+									{% if messages %}
+										{% for message in messages %}
+											<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+												{{ message }}
+												<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+											</div>
+										{% endfor %}
+									{% endif %}
+
+									<div class="mb-3">
+										<label class="form-label">First Name</label>
+										<input type="text" class="form-control" name="first_name" required>
+									</div>
+									<div class="mb-3">
+										<label class="form-label">Email</label>
+										<input type="email" class="form-control" name="email" required>
+									</div>
+									<div class="mb-3">
+										<label class="form-label">Phone Number</label>
+                                        <input class="form-control" id="phone" name="phone" type="text">
+									</div>
+									<div class="mb-3">
+										<div class="d-flex align-items-center justify-content-between flex-wrap">
+											<label class="form-label">Password</label>
+											<p  class="text-gray-6 fw-medium  mb-1">Must be 8 Characters at Least</p>
+										</div>
+										<input type="password" class="form-control" name="password" required>
+									</div>
+									<div class="mb-3">
+										<div class="d-flex align-items-center justify-content-between flex-wrap row-gap-2">
+											<div class="form-check">
+												<input class="form-check-input" type="checkbox" value="" id="remember_me" required>
+												<label class="form-check-label" for="remember_me">
+													I agree to <a href="javascript:void(0);" class="text-primary text-decoration-underline">Terms of use</a> & <a href="javascript:void(0);" class="text-primary text-decoration-underline">Privacy policy</a>
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="mb-3">
+										<button type="submit" class="btn btn-lg btn-linear-primary w-100">Sign Up</button>
+									</div>
+									<div class="login-or mb-3">
+										<span class="span-or">Or sign up with </span>
+									</div>
+									<div class="d-flex align-items-center mb-3">
+										<a href="javascript:void(0);" class="btn btn-light flex-fill d-flex align-items-center justify-content-center me-3"><img src="{% static 'assets/img/icons/google-icon.svg' %}" class="me-2" alt="Img">Google</a>
+										<a href="javascript:void(0);" class="btn btn-light flex-fill d-flex align-items-center justify-content-center"><img src="{% static 'assets/img/icons/fb-icon.svg' %}" class="me-2" alt="Img">Facebook</a>
+									</div>
+									<div class=" d-flex justify-content-center">
+										<p>Already have a account? <a href="{% url 'login' %}" class="text-primary">Sign In</a></p>
+									</div>
+								</div>
+								<div>
+									<img src="{% static 'assets/img/bg/authentication-bg.png' %}" class="bg-left-top" alt="Img">
+									<img src="{% static 'assets/img/bg/authentication-bg.png' %}" class="bg-right-bottom" alt="Img">
+								</div>
+							</div>
+
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /Main Wrapper -->
+
+	<!-- Footer -->
+	<div class="footer-copyright  bg-transparent">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<p>Copyright &copy; 2024. All Rights Reserved Truelysell</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /Footer -->
+
+	</div>
+
+</body>
+
+{% endblock %}

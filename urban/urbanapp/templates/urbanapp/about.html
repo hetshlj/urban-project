@@ -1,0 +1,527 @@
+{% extends 'urbanapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+	<div class="main-wrapper">
+
+
+		<!-- Breadcrumb -->
+		<div class="breadcrumb-bar text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-12">
+					<h2 class="breadcrumb-title mb-2">About Us</h2>
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb justify-content-center mb-0">
+							<li class="breadcrumb-item"> <a href="/">Home</a></li>
+							<li class="breadcrumb-item active" aria-current="page">About Us</li>
+						</ol>
+					</nav>
+				</div>
+			</div>
+			<div class="breadcrumb-bg">
+				<img src="{% static 'assets/img/bg/breadcrumb-bg-01.png' %}" class="breadcrumb-bg-1" alt="Img">
+				<img src="{% static 'assets/img/bg/breadcrumb-bg-02.png' %}" class="breadcrumb-bg-2" alt="Img">
+			</div>
+		</div>
+		</div>
+		<!-- /Breadcrumb -->
+
+		<!-- Page Wrapper -->
+		<div class="page-wrapper">
+		<div class="content p-0">
+
+			<!-- About -->
+			<div class="about-sec">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-6">
+							<div class="about-img d-none d-md-block">
+								<div class="about-exp">
+									<span>12+ years of experiences</span>
+								</div>
+								<div class="abt-img">
+									<img src="{% static 'assets/img/providers/provider-23.jpg' %}" class="img-fluid" alt="img">
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="about-content">
+								<h6>ABOUT OUR COMPANY</h6>
+								<h2>Best Solution For Cleaning Services</h2>
+								<p>Welcome to Truelysell, your premier destination for connecting with top-rated service
+									providers and finding the perfect match for your needs. Our platform is designed to
+									simplify the process of discovering, evaluating, and hiring trusted professionals
+									across a wide range of services, from home improvement and IT support to personal
+									care and more.</p>
+								<p>At Truelysell, our mission is to bridge the gap between service providers and
+									customers by offering a seamless and efficient marketplace experience. We aim to
+									empower both parties by providing a reliable platform where quality, transparency,
+									and customer satisfaction are our top priorities.</p>
+								<div class="row">
+									<div class="col-md-6">
+										<ul>
+											<li class="text-truncate"><i class="ti ti-circle-check-filled text-dark me-1"></i>We prioritize quality and reliability</li>
+											<li class="text-truncate"><i class="ti ti-circle-check-filled text-dark me-1"></i>WeSaving your time and effort.</li>
+										</ul>
+									</div>
+									<div class="col-md-6">
+										<ul>
+											<li class="text-truncate"><i class="ti ti-circle-check-filled text-dark me-1"></i>Clear, detailed service listings & reviews</li>
+											<li class="text-truncate"><i class="ti ti-circle-check-filled text-dark me-1"></i> Smooth and satisfactory experience.</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /About -->
+
+			<!-- Work Section -->
+			<section class="work-section px-0 my-0 work-bg">
+				<div class="work-bg-2 d-none d-md-block">
+					<img src="{% static 'assets/img/bg/dotted.png' %}" alt="img" class="img-fluid">
+				</div>
+				<div class="work-bg-1 d-none d-md-block">
+					<img src="{% static 'assets/img/bg/bg-13.png' %}" alt="img" class="img-fluid">
+				</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<div class="section-heading">
+								<h2>How It Works</h2>
+								<p>Straightforward process designed to make your experience seamless and hassle-free.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 d-flex">
+							<div class=" card work-box flex-fill">
+								<div class="card-body">
+									<div class="work-icon">
+										<span>
+											<img src="{% static 'assets/img/icons/about-hands.svg' %}" alt="img">
+										</span>
+									</div>
+									<h5>1. Search and Browse</h5>
+									<p>Customers can browse or search for specific products or services using
+										categories, filters, or search bars.</p>
+									<h4>01</h4>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 d-flex">
+							<div class=" card work-box flex-fill">
+								<div class="card-body">
+									<div class="work-icon">
+										<span>
+											<img src="{% static 'assets/img/icons/about-documents.svg' %}" alt="img">
+										</span>
+									</div>
+									<h5>2 Add to Cart or Book Now</h5>
+									<p>Customers can add items to their shopping cart. For services, they may select a
+										service and proceed to book.</p>
+									<h4>02</h4>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 d-flex">
+							<div class=" card work-box flex-fill">
+								<div class="card-body">
+									<div class="work-icon">
+										<span>
+											<img src="{% static 'assets/img/icons/about-book.svg' %}" alt="img">
+										</span>
+									</div>
+									<h5>Amazing Places</h5>
+									<p>The Customer fulfills the order by either providing the service to the buyer.
+									</p>
+									<h4>03</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- /Work Section -->
+
+			<!-- Choose Us Section -->
+			<div class="chooseus-sec">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-md-6">
+							<div class="choose-content">
+								<h2>Why Choose Us</h2>
+								<p>Choose us for reliable, personalized service and exceptional results.</p>
+								<div class="accordion" id="faq_accordion">
+									<div class="accordion-item">
+									  <h2 class="accordion-header">
+										<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+											24/7 Supports
+										</button>
+									  </h2>
+									  <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faq_accordion">
+										<div class="accordion-body">
+										  <p>Access round-the-clock support through our dedicated helpdesk, available 24/7 to address any issues or queries you may have. Whether it’s day or night, our team is here to ensure you receive timely assistance and seamless service.</p>
+										</div>
+									  </div>
+									</div>
+									<div class="accordion-item">
+									  <h2 class="accordion-header">
+										<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+											Client’s reviews
+										</button>
+									  </h2>
+									  <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faq_accordion">
+										<div class="accordion-body">
+											<p>Access round-the-clock support through our dedicated helpdesk, available 24/7 to address any issues or queries you may have. Whether it’s day or night, our team is here to ensure you receive timely assistance and seamless service.</p>
+										</div>
+									  </div>
+									</div>
+									<div class="accordion-item">
+									  <h2 class="accordion-header">
+										<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+											Professional Team
+										</button>
+									  </h2>
+									  <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" data-bs-parent="#faq_accordion">
+										<div class="accordion-body">
+											<p>Access round-the-clock support through our dedicated helpdesk, available 24/7 to address any issues or queries you may have. Whether it’s day or night, our team is here to ensure you receive timely assistance and seamless service.</p>
+										</div>
+									  </div>
+									</div>
+									<div class="accordion-item">
+									  <h2 class="accordion-header">
+										<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse4" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+											Best Services
+										</button>
+									  </h2>
+									  <div id="panelsStayOpen-collapse4" class="accordion-collapse collapse" data-bs-parent="#faq_accordion">
+										<div class="accordion-body">
+											<p>Access round-the-clock support through our dedicated helpdesk, available 24/7 to address any issues or queries you may have. Whether it’s day or night, our team is here to ensure you receive timely assistance and seamless service.</p>
+										</div>
+									  </div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="chooseus-img">
+								<img src="{% static 'assets/img/services/service-75.jpg' %}" class="img-fluid" alt="img">
+							</div>
+						</div>
+					</div>
+					<div class="row justify-content-center">
+						<div class="col-xl-3 col-lg-4 col-sm-6">
+							<div class="choose-icon">
+								<img src="{% static 'assets/img/icons/group-stars.svg' %}" class="img-fluid" alt="img">
+								<div class="choose-info">
+									<h3>2583+</h3>
+									<p>Satisfied Clients</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-lg-4 col-sm-6">
+							<div class="choose-icon">
+								<img src="{% static 'assets/img/icons/expert-team.svg' %}" class="img-fluid" alt="img">
+								<div class="choose-info">
+									<h3>2583+</h3>
+									<p>Expert Team</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-lg-4 col-sm-6">
+							<div class="choose-icon">
+								<img src="{% static 'assets/img/icons/about-documents.svg' %}" class="img-fluid" alt="img">
+								<div class="choose-info">
+									<h3>2583+</h3>
+									<p>Project Completed</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-lg-4 col-sm-6">
+							<div class="choose-icon border-0">
+								<img src="{% static 'assets/img/icons/expereience.svg' %}" class="img-fluid" alt="img">
+								<div class="choose-info">
+									<h3>2583+</h3>
+									<p>Years of experience</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Choose Us Section -->
+
+			<!-- Providers Section -->
+			<section class="providers-section abt-provider">
+				<div class="container">
+					<div class="section-heading">
+						<div class="row">
+							<div class="col-md-6">
+								<p class="mb-0 fs-16">Meet Our Experts</p>
+								<h2 class="fs-32">Top Providers</h2>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="card providerset p-0 flex-fill">
+								<div class="card-body">
+									<div class="providerset-img">
+										<a href="provider-details.html">
+											<img src="{% static 'assets/img/providers/provider-12.jpg' %}" alt="img">
+										</a>
+									</div>
+									<div class="providerset-content">
+										<div class="providerset-price">
+											<div class="d-flex justify-content-between align-items-center flex-fill">
+												<div class="providerset-name">
+													<h4 class="d-flex align-items-center"><a href="provider-details.html" class="me-1 text-truncate">John Smith</a><i
+															class="ti ti-circle-check-filled text-success" ></i></h4>
+													<span>Electrician</span>
+												</div>
+												<div class="providerset-prices">
+													<h6>$20.00<span>/hr</span></h6>
+												</div>
+											</div>
+										</div>
+										<div class="provider-rating">
+											<div class="rating fs-13">
+												<i class="ti ti-star-filled text-warning"></i>
+												<i class="ti ti-star-filled text-warning"></i>
+												<i class="ti ti-star-filled text-warning"></i>
+												<i class="ti ti-star-filled text-warning"></i>
+												<i class="ti ti-star-half-filled text-warning me-1"></i><span class="fs-13">(320)</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="card providerset p-0">
+								<div class="card-body">
+									<div class="providerset-img">
+										<a href="provider-details.html">
+											<img src="{% static 'assets/img/providers/provider-01.jpg' %}" alt="img">
+										</a>
+									</div>
+									<div class="providerset-content">
+										<div class="providerset-price">
+											<div class="d-flex justify-content-between align-items-center flex-fill">
+												<div class="providerset-name">
+													<h4 class="d-flex align-items-center"><a href="provider-details.html" class="me-1">Michael</a><i
+															class="ti ti-circle-check-filled text-success" ></i></h4>
+													<span>Carpenter</span>
+												</div>
+												<div class="providerset-prices">
+													<h6>$50.00<span>/hr</span></h6>
+												</div>
+											</div>
+										</div>
+										<div class="provider-rating">
+											<div class="rating fs-13">
+												<i class="ti ti-star-filled text-warning"></i>
+												<i class="ti ti-star-filled text-warning"></i>
+												<i class="ti ti-star-filled text-warning"></i>
+												<i class="ti ti-star-filled text-warning"></i>
+												<i class="ti ti-star-half-filled text-warning me-1"></i><span class="fs-13">(228)</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="card providerset p-0">
+								<div class="card-body">
+									<div class="providerset-img">
+										<a href="provider-details.html">
+											<img src="{% static 'assets/img/providers/provider-02.jpg' %}" alt="img">
+										</a>
+									</div>
+									<div class="providerset-content">
+										<div class="providerset-price">
+											<div class="d-flex justify-content-between align-items-center flex-fill">
+												<div class="providerset-name">
+													<h4 class="d-flex align-items-center"><a href="provider-details.html" class="me-1">Antoinette</a><i
+															class="ti ti-circle-check-filled text-success" ></i></h4>
+													<span>Cleaner</span>
+												</div>
+												<div>
+													<div class="providerset-prices">
+														<h6>$25.00<span>/hr</span></h6>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="provider-rating">
+											<div class="rating fs-13">
+												<i class="ti ti-star-filled text-warning"></i>
+												<i class="ti ti-star-filled text-warning"></i>
+												<i class="ti ti-star-filled text-warning"></i>
+												<i class="ti ti-star-filled text-warning"></i>
+												<i class="ti ti-star-half-filled text-warning me-1"></i><span class="fs-13">(130)</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="card providerset p-0">
+								<div class="card-body">
+									<div class="providerset-img">
+										<a href="provider-details.html">
+											<img src="{% static 'assets/img/providers/provider-03.jpg' %}" alt="img">
+										</a>
+									</div>
+									<div class="providerset-content">
+										<div class="providerset-price">
+											<div class="d-flex justify-content-between align-items-center flex-fill">
+												<div class="providerset-name">
+													<h4 class="d-flex align-items-center"><a href="provider-details.html" class="me-1">Thompson</a><i
+															class="ti ti-circle-check-filled text-success" ></i></h4>
+													<span>Mechanic</span>
+												</div>
+												<div class="providerset-prices">
+													<h6>$30.00<span>/hr</span></h6>
+												</div>
+											</div>
+										</div>
+										<div class="provider-rating">
+											<div class="rating fs-13">
+												<i class="ti ti-star-filled text-warning"></i>
+												<i class="ti ti-star-filled text-warning"></i>
+												<i class="ti ti-star-filled text-warning"></i>
+												<i class="ti ti-star-filled text-warning"></i>
+												<i class="ti ti-star-half-filled text-warning me-1"></i><span class="fs-13">(95)</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- /Providers Section -->
+
+			<!-- Client Section -->
+			<section class="client-section client-section-about">
+				<div class="container">
+					<div class="overlay-img d-none d-md-block">
+						<div class="overlay-img-left">
+							<img src="{% static 'assets/img/bg/transperent-circle.png' %}" alt="img" class="img-fluid">
+						</div>
+						<div class="overlay-img-right">
+							<img src="{% static 'assets/img/bg/bg-graphics.png' %}" alt="img" class="img-fluid">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<div class="section-heading">
+								<h2>Testimonials</h2>
+								<p>Our clients rave about our seamless service, exceptional quality, and unmatched customer support.</p>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class=" owl-carousel testimonial-slider-3">
+
+								<div class=" card client-widget">
+									<div class="card-body">
+										<div class="client-img">
+											<a href="javascript:void(0);">
+												<img class="img-fluid rounded-circle" alt="Image" src="{% static 'assets/img/user/user-03.jpg' %}">
+											</a>
+										</div>
+										<div class="client-content">
+
+											<p>“I was thoroughly impressed with the quality and efficiency of the service I received. The team was professional, and the results exceeded my expectations.” </p>
+											<h5>John Doe</h5>
+											<h6>Director</h6>
+										</div>
+									</div>
+								</div>
+								<div class="card client-widget">
+									<div class="card-body">
+										<div class="client-img">
+											<a href="javascript:void(0);">
+												<img class="img-fluid rounded-circle" alt="Image" src="{% static 'assets/img/user/user-06.jpg' %}">
+											</a>
+										</div>
+										<div class="client-content">
+											<p>"The value for money was excellent, and the quality of work was outstanding. I felt that I received more than what I paid for, with high standards and professional results."</p>
+											<h5>John Doe</h5>
+											<h6>Director</h6>
+										</div>
+									</div>
+								</div>
+								<div class="card client-widget">
+									<div class="card-body">
+										<div class="client-img">
+											<a href="javascript:void(0);">
+												<img class="img-fluid rounded-circle" alt="Image" src="{% static 'assets/img/user/user-07.jpg' %}">
+											</a>
+										</div>
+										<div class="client-content">
+											<p>
+												“I was thoroughly impressed with the quality and efficiency of the service I received.
+												The team was professional,
+												and the results exceeded my expectations.”
+											</p>
+											<h5>Mike Hussy</h5>
+											<h6>Director</h6>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- /Client Section -->
+
+			<!-- Service Section -->
+			<div class="service-offer about-service-offer">
+				<div class="container">
+					<div class="card">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-7">
+									<div class="service-content">
+										<h6 class="display-6">Looking for the Best Service
+											Finder & Bookings</h6>
+											<p>We offer a comprehensive directory of top-rated service providers, detailed profiles, and customer reviews to help you make informed choices.</p>
+
+										<div class="d-flex">
+											<a href="javascript:void(0);" class="btn btn-white d-flex align-items-center">Get Started <i class="ms-1 ti ti-circle-arrow-right"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-5">
+									<div class="service-img">
+										<img src="{% static 'assets/img/services/repair-img.png' %}" alt="img">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Service Section -->
+		</div>
+		</div>
+		<!-- /Page Wrapper -->
+
+			{% endblock %}
+
+	</div>
