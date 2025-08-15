@@ -1,0 +1,38 @@
+{% extends 'urbanapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<body class="authentication-page">
+<div class="d-flex justify-content-between vh-100 overflow-auto flex-column">
+
+<div class="authentication-header">
+	<div class="container">
+		<div class="col-md-12 text-center">
+			<img src="{% static 'assets/img/logo.svg' %}" alt="logo">
+		</div>
+	</div>
+</div>
+
+<div class="main-wrapper">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-6 mx-auto">
+				<div class="card p-sm-4 my-5">
+					<div class="card-body text-center">
+						<h3>Google Sign-In</h3>
+						<p>This is a placeholder. To enable Google OAuth sign-in install and configure an
+						OAuth library such as <code>django-allauth</code> and set up a Google client ID/secret.
+						See the project README or ask me to add a working integration.</p>
+						<div class="mt-3">
+							<a href="https://django-allauth.readthedocs.io/en/latest/" target="_blank" class="btn btn-light">Allauth docs</a>
+						</div>
+						<div class="mt-3"><a href="{% url 'login' %}">Back to Sign In</a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+{% endblock %}

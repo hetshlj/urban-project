@@ -80,12 +80,36 @@ WSGI_APPLICATION = 'urban.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Default: use SQLite for local development. To use MySQL set the environment
+# variable USE_MYSQL=True and provide the DB_NAME, DB_USER, DB_PASSWORD, DB_HOST,
+# and DB_PORT environment variables. Do NOT commit credentials to source control.
+import os
+USE_MYSQL = os.environ.get('USE_MYSQL', 'False') == 'True'
+if USE_MYSQL:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.environ.get('DB_NAME', 'urban_db'),
+            'USER': os.environ.get('DB_USER', 'urban_user'),
+            'PASSWORD': os.environ.get('DB_PASSWORD', ''),
+            'HOST': os.environ.get('DB_HOST', '127.0.0.1'),
+            'PORT': os.environ.get('DB_PORT', '3306'),
+            # Optional: connection persistence
+            'CONN_MAX_AGE': int(os.environ.get('DB_CONN_MAX_AGE', 0)),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
+# NOTE: On Windows it's common to install the MySQL client with:
+#   pip install mysqlclient
+# If that fails, you can use the pure-python connector but Django's recommended
+# engine is mysqlclient. Ensure MySQL server exists and the user has proper rights.
 
 
 # Password validation
@@ -128,3 +152,32 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Development email backend: prints emails to console instead of sending them.
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'noreply@example.com'
+
+# -----------------------------
+# Gmail SMTP template (env-driven)
+# To enable Gmail SMTP in production set USE_GMAIL=True and provide the env vars below.
+# NOTE: For Gmail you should use an App Password (not your regular account password) when
+# 2FA is enabled. See: https://support.google.com/accounts/answer/185833
+# Example environment variables (do NOT commit these to source control):
+#
+# USE_GMAIL=True
+# EMAIL_HOST_USER=your-email@gmail.com
+# EMAIL_HOST_PASSWORD=your_app_password_here
+# DEFAULT_FROM_EMAIL=your-email@gmail.com
+#
+import os
+USE_GMAIL = os.environ.get('USE_GMAIL', 'True') == 'True'
+if USE_GMAIL:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_PORT = int(os.environ.get('EMAIL_PORT', 587))
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'hetshah6312@gmail.com')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'qkjm tlho auoy uyht')
+    EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True') == 'True'
+    DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER)
+
+# End Gmail SMTP template

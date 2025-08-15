@@ -1,0 +1,16 @@
+1. login
+2. register
+3. forgot pwd
+4. database
+5. admin 
+6. uml
+7. ppt
+8. doc
+9. database schema
+
+
+src="assets/
+src="{% static 'assets/
+
+.png"
+.png' %}"
