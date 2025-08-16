@@ -29,6 +29,36 @@ def servicedetails(request):
 def categories(request):
     return render(request, 'urbanapp/categories.html')
 
+def providers(request):
+    return render(request, 'urbanapp/providers.html')
+
+
+def provider_details(request):
+    return render(request, 'urbanapp/provider-details.html')
+
+def create_service(request):
+    return render(request, 'urbanapp/create-service.html')
+
+def user_dashboard(request):
+    return render(request, 'urbanapp/user-dashboard.html')
+
+def user_booking_list(request):
+    return render(request, 'urbanapp/user-booking-list.html')
+
+def favourites(request):
+    return render(request, 'urbanapp/favourites.html')
+
+def user_wallet(request):
+    return render(request, 'urbanapp/customer-wallet.html')
+
+def user_reviews(request):
+    return render(request, 'urbanapp/customer-reviews.html')
+
+def user_chat(request):
+    return render(request, 'urbanapp/user-chat.html')
+
+def account_settings(request):
+    return render(request, 'urbanapp/account-settings.html')
 
 def register(request):
     """Handle GET/POST for user registration.

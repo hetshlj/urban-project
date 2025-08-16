@@ -1,0 +1,288 @@
+Project summary — urban-project
+
+Overview
+- This file documents what we've implemented so far in the project, the main changed files, how the authentication & DB/email flows work, and quick steps to run and test locally.
+
+What we implemented (high level)
+- Fixed registration and login flows, aligned templates to backend expectations.
+  - Use `urbanapp/register.html` for signup (removed first_name from register form).
+  - Registration creates a Django `User` and `UserProfile` (phone, verification fields).
+- Password reset via email integrated using Django's auth views.
+  - Added friendly, site-styled templates for the entire reset flow under `urbanapp/` and `templates/registration/`.
+  - Configured a console email backend for dev and added a Gmail SMTP template in `urban/urban/settings.py` (env-driven).
+  - Tested `send_mail()` (console output showed email content).
+- Added SMS OTP sign-in flow (dev-only OTP surface) and Google sign-in placeholder.
+  - Views: `otp_request`, `otp_verify`, `google_login` in `urbanapp/views.py`.
+  - Templates: `urbanapp/otp_request.html`, `urbanapp/otp_verify.html`, `urbanapp/google_login.html`.
+  - OTPs are stored on `UserProfile.verification_code/verification_expiry` and logged to messages for dev. Replace with SMS provider (Twilio) in production.
+- Database changes & migration
+  - `urban/urban/settings.py` now uses MySQL as the primary DB, reading credentials from env vars (DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT).
+  - PyMySQL fallback is installed/used to avoid building `mysqlclient` on Windows.
+  - `py manage.py migrate` ran and reported "No migrations to apply" (project migrations are up-to-date or not created for some models).
+  - A large SQL schema `database_schema.sql` is available in the repo for manual import into MySQL if you prefer direct SQL schema creation.
+
+Files changed / created (high level)
+- urban/urban/settings.py — email backend, MySQL config, PyMySQL fallback
+- urban/urbanapp/views.py — register/login, otp_request, otp_verify, google_login (added OTP logic)
+- urban/urbanapp/models.py — `UserProfile` (phone, verification fields)
+- urban/urbanapp/urls.py — wired password reset and OTP/Google routes
+- urban/urbanapp/templates/urbanapp/* — updated/added templates: `register.html`, `login.html`, `forgot-password.html`, `otp_request.html`, `otp_verify.html`, `google_login.html`, `password_reset_*` and `registration/*` templates
+- urban/urbanapp/templates/urbanapp/database_schema.sql — large SQL schema (optional import)
+
+How the important flows work
+- Registration: POST to `/register/` -> `views.register` creates `User` and `UserProfile`, logs in and redirects to `home`.
+- Login: POST to `/login/` -> `views.user_login` accepts username or email + password; authenticates and logs in.
+- Password Reset: user submits email at `/password-reset/` -> Django sends reset email (console or SMTP) with link -> `/reset/<uidb64>/<token>/` shows reset form -> on success redirects to `reset/done/`.
+- OTP sign-in (dev): user requests OTP by phone, app stores a 6-digit code + expiry on `UserProfile`, user verifies code at `/login/otp/verify/` -> on success logs in.
+- Google sign-in: placeholder page added; recommended integration: `django-allauth`.
+
+How to run locally (quick)
+1) Ensure Python deps (use your venv):
+   pip install -r requirements.txt  # if you have one, otherwise install Django + PyMySQL
+   pip install Django PyMySQL
+2) If using MySQL, set env vars (PowerShell example):
+   $env:DB_NAME="urban_db"; $env:DB_USER="urban_user"; $env:DB_PASSWORD="your_password"; $env:DB_HOST="127.0.0.1"; $env:DB_PORT="3306"
+   (Also $env:USE_GMAIL and EMAIL_* if you want real SMTP.)
+3) Run database migrations (creates Django tables):
+   py manage.py makemigrations
+   py manage.py migrate
+4) Test email (console backend prints email):
+   py -c "import os,sys; sys.path.insert(0, r'e:/collage/urban-project/urban'); os.environ.setdefault('DJANGO_SETTINGS_MODULE','urban.settings'); import django; django.setup(); from django.core.mail import send_mail; print(send_mail('Test','Body',None,['you@example.com']))"
+5) Start server:
+   py manage.py runserver
+
+Optional: Import full SQL schema instead of Django migrations
+- Use MySQL Workbench or CLI to run `database_schema.sql` (path: `urban/urbanapp/templates/urbanapp/database_schema.sql` or root `database_schema.sql` if present). The SQL contains many DROP/CREATE statements.
+
+Security & production notes
+- Use strong DB passwords and never commit env vars. Consider `django-environ` or a secrets manager.
+- Replace console OTP/email behavior with real providers (Twilio, Gmail SMTP with App Passwords or transactional email service).
+- Add rate-limiting for OTP and reset flows.
+- Enable HTTPS and set proper `ALLOWED_HOSTS`, `DEBUG=False` in production.
+
+Next recommended tasks
+- Create missing Django migrations (`makemigrations`) for any added models, then `migrate`.
+- Decide whether you want to import the SQL schema or keep Django migrations as the source of truth.
+- Integrate SMS provider and Google OAuth (django-allauth) if you want production-ready auth.
+
+If you want, I can now:
+- Run `makemigrations` and `migrate` for you.
+- Import `database_schema.sql` into your MySQL (I can run it if you set env vars or provide DB creds).
+- Add `.env.example` and wire `django-environ` for safer config.
+
+-- End of summary
+
+How functions work (with code snippets)
+-------------------------------------
+Below are concise, copy-pasteable snippets that show how the key functions work in the project. These snippets are minimal and focus on the inputs, outputs, and behaviour so you can quickly understand and reuse them.
+
+1) `UserProfile` model (urbanapp/models.py)
+- Purpose: extend the built-in User with phone and OTP fields.
+
+```python
+from django.db import models
+from django.conf import settings
+from django.utils import timezone
+import datetime
+
+class UserProfile(models.Model):
+   user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+   phone = models.CharField(max_length=20, blank=True, null=True)
+   is_phone_verified = models.BooleanField(default=False)
+   verification_code = models.CharField(max_length=10, blank=True, null=True)
+   verification_expiry = models.DateTimeField(blank=True, null=True)
+
+   def set_otp(self, code, ttl_seconds=300):
+      self.verification_code = str(code)
+      self.verification_expiry = timezone.now() + datetime.timedelta(seconds=ttl_seconds)
+      self.save()
+
+   def verify_otp(self, code):
+      if not self.verification_code or not self.verification_expiry:
+         return False
+      if timezone.now() > self.verification_expiry:
+         return False
+      return str(code) == self.verification_code
+```
+
+2) Register view (urbanapp/views.py)
+- Purpose: create a new User and UserProfile, log user in and redirect.
+
+```python
+from django.contrib.auth import login
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+
+def register(request):
+   if request.method == 'POST':
+      username = request.POST['username']
+      email = request.POST.get('email')
+      password = request.POST['password']
+      user = User.objects.create_user(username=username, email=email, password=password)
+      # create profile
+      user.userprofile.phone = request.POST.get('phone', '')
+      user.userprofile.save()
+      login(request, user)
+      return redirect('home')
+   return render(request, 'urbanapp/register.html')
+```
+
+3) Login view (urbanapp/views.py)
+- Purpose: authenticate by username or email + password.
+
+```python
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+
+def user_login(request):
+   if request.method == 'POST':
+      ident = request.POST.get('identifier')  # username or email
+      password = request.POST.get('password')
+      # try username first, then email
+      user = authenticate(request, username=ident, password=password)
+      if user is None:
+         try:
+            user_obj = User.objects.get(email__iexact=ident)
+            user = authenticate(request, username=user_obj.username, password=password)
+         except User.DoesNotExist:
+            user = None
+      if user:
+         login(request, user)
+         return redirect('home')
+      else:
+         return render(request, 'urbanapp/login.html', {'error': 'Invalid credentials'})
+   return render(request, 'urbanapp/login.html')
+```
+
+4) OTP request & verify (urbanapp/views.py)
+- Purpose: generate an OTP, save it on profile, and verify it on submit.
+
+```python
+import random
+from django.utils import timezone
+from django.contrib import messages
+
+def otp_request(request):
+   if request.method == 'POST':
+      phone = request.POST.get('phone')
+      try:
+         profile = UserProfile.objects.get(phone=phone)
+      except UserProfile.DoesNotExist:
+         messages.error(request, 'Phone not found')
+         return redirect('otp_request')
+      code = random.randint(100000, 999999)
+      profile.set_otp(code, ttl_seconds=300)
+      # In dev we show / log the OTP; in prod send via SMS (Twilio)
+      messages.success(request, f'OTP is {code} (dev-only)')
+      return redirect('otp_verify')
+   return render(request, 'urbanapp/otp_request.html')
+
+def otp_verify(request):
+   if request.method == 'POST':
+      phone = request.POST.get('phone')
+      code = request.POST.get('code')
+      profile = UserProfile.objects.filter(phone=phone).first()
+      if profile and profile.verify_otp(code):
+         profile.is_phone_verified = True
+         profile.verification_code = None
+         profile.verification_expiry = None
+         profile.save()
+         login(request, profile.user)
+         return redirect('home')
+      messages.error(request, 'Invalid or expired code')
+   return render(request, 'urbanapp/otp_verify.html')
+```
+
+5) Google login placeholder
+- Purpose: page encouraging use of `django-allauth` or to show the OAuth flow.
+
+```python
+def google_login(request):
+   # Recommended: install django-allauth and configure a provider
+   return render(request, 'urbanapp/google_login.html')
+```
+
+6) Password reset
+- Purpose: use Django's built-in auth views. Key settings in `urban/urban/settings.py`:
+
+```python
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # dev
+# For production with Gmail SMTP (example):
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+```
+
+The project uses Django's PasswordResetView, PasswordResetConfirmView, etc. Templates are under `urbanapp/templates/registration/` and `urbanapp/templates/urbanapp/password_reset_*`.
+
+7) Database settings snippet (urban/urban/settings.py)
+
+```python
+import os
+import pymysql
+pymysql.install_as_MySQLdb()
+
+DATABASES = {
+   'default': {
+      'ENGINE': 'django.db.backends.mysql',
+      'NAME': os.environ.get('DB_NAME', 'urban_db'),
+      'USER': os.environ.get('DB_USER', 'urban_user'),
+      'PASSWORD': os.environ.get('DB_PASSWORD', ''),
+      'HOST': os.environ.get('DB_HOST', '127.0.0.1'),
+      'PORT': os.environ.get('DB_PORT', '3306'),
+   }
+}
+```
+
+8) URLs (urbanapp/urls.py)
+
+```python
+from django.urls import path
+from . import views
+
+urlpatterns = [
+   path('register/', views.register, name='register'),
+   path('login/', views.user_login, name='login'),
+   path('logout/', views.user_logout, name='logout'),
+   path('login/otp/', views.otp_request, name='otp_request'),
+   path('login/otp/verify/', views.otp_verify, name='otp_verify'),
+   path('login/google/', views.google_login, name='google_login'),
+   # password reset uses Django's built-ins, e.g. path('password-reset/', ...)
+]
+```
+
+9) Minimal template form examples
+
+register form (urbanapp/templates/urbanapp/register.html):
+
+```html
+<form method="post">{% csrf_token %}
+  <input name="username" required />
+  <input name="email" type="email" />
+  <input name="password" type="password" required />
+  <input name="phone" />
+  <button type="submit">Register</button>
+</form>
+```
+
+login form (urbanapp/templates/urbanapp/login.html):
+
+```html
+<form method="post">{% csrf_token %}
+  <input name="identifier" placeholder="username or email" required />
+  <input name="password" type="password" required />
+  <button type="submit">Sign in</button>
+</form>
+```
+
+Notes and edge-cases
+- Always validate/normalize phone numbers before matching.
+- OTP: add rate-limiting and attempt counters to avoid abuse.
+- Email: test SMTP credentials and provider limits; use app passwords for Gmail.
+
+If you want, I can now update the real view files to match these snippets exactly and run `makemigrations`/`migrate` to ensure the model changes are tracked.
+
+-- End of summary

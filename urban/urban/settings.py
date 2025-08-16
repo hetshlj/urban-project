@@ -78,33 +78,30 @@ WSGI_APPLICATION = 'urban.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
-# Default: use SQLite for local development. To use MySQL set the environment
-# variable USE_MYSQL=True and provide the DB_NAME, DB_USER, DB_PASSWORD, DB_HOST,
-# and DB_PORT environment variables. Do NOT commit credentials to source control.
+# Using MySQL as the primary database. Credentials are read from environment
+# variables. Do NOT commit credentials to source control.
 import os
-USE_MYSQL = os.environ.get('USE_MYSQL', 'False') == 'True'
-if USE_MYSQL:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': os.environ.get('DB_NAME', 'urban_db'),
-            'USER': os.environ.get('DB_USER', 'urban_user'),
-            'PASSWORD': os.environ.get('DB_PASSWORD', ''),
-            'HOST': os.environ.get('DB_HOST', '127.0.0.1'),
-            'PORT': os.environ.get('DB_PORT', '3306'),
-            # Optional: connection persistence
-            'CONN_MAX_AGE': int(os.environ.get('DB_CONN_MAX_AGE', 0)),
-        }
+# If mysqlclient (MySQLdb) isn't installed, allow using PyMySQL as a drop-in
+# replacement. This avoids needing to compile mysqlclient on Windows.
+try:
+    import pymysql
+    pymysql.install_as_MySQLdb()
+except Exception:
+    # If PyMySQL isn't installed, importing MySQLdb will raise later and
+    # the error will instruct to install mysqlclient or PyMySQL.
+    pass
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ.get('DB_NAME', 'jango'),
+        'USER': os.environ.get('DB_USER', 'root'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'Het@123'),
+        'HOST': os.environ.get('DB_HOST', '127.0.0.1'),
+        'PORT': os.environ.get('DB_PORT', '3307'),
+        'CONN_MAX_AGE': int(os.environ.get('DB_CONN_MAX_AGE', 0)),
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+}
+
 
 # NOTE: On Windows it's common to install the MySQL client with:
 #   pip install mysqlclient

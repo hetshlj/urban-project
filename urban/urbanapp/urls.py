@@ -21,5 +21,14 @@ urlpatterns = [
     path('services-list/', views.services, name='services'),
     path('service-details/', views.servicedetails, name='servicesdetails'),
     path('categories/', views.categories, name='categories'),
-
+    path('providers/', views.providers, name='providers'),
+    path('provider-details/', views.provider_details, name='provider_details'),
+    path('create-service/', views.create_service, name='create_service'),
+    path('user-dashboard/', views.user_dashboard, name='user_dashboard'),
+    path('user-booking-list/', views.user_booking_list, name='user_booking_list'),
+    path('favourites/', views.favourites, name='favourites'),
+    path('customer-wallet/', views.user_wallet, name='user_wallet'),
+    path('customer-reviews/', views.user_reviews, name='user_reviews'),
+    path('user-chat/', views.user_chat, name='user_chat'),
+    path('account-settings/', views.account_settings, name='account_settings'),
 ]
