@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.db import transaction
+from urllib3 import request
 from .models import UserProfile
 from django.utils import timezone
 import random
@@ -68,6 +69,36 @@ def provider_services(request):
 
 def provider_booking(request):
     return render(request, 'provider/provider-booking.html')
+
+def provider_staff(request):
+    return render(request, 'provider/staff-list.html')
+
+def provider_customers(request):
+    return render(request, 'provider/provider-customers.html')
+
+def provider_payout(request):
+    return render(request, 'provider/provider-payout.html')
+
+def provider_holiday(request):
+    return render(request, 'provider/provider-holiday.html')
+
+def provider_coupons(request):
+    return render(request, 'provider/provider-coupons.html')
+
+def provider_offers(request):
+    return render(request, 'provider/provider-offers.html')
+
+def provider_reviews(request):
+    return render(request, 'provider/provider-reviews.html')
+
+def provider_enquiry(request):
+    return render(request, 'provider/provider-enquiry.html')
+
+def provider_earnings(request):
+    return render(request, 'provider/provider-earnings.html')
+
+def provider_chat(request):
+    return render(request, 'provider/provider-chat.html')
 
 def register(request):
     """Handle GET/POST for user registration.
