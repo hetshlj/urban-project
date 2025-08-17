@@ -60,6 +60,15 @@ def user_chat(request):
 def account_settings(request):
     return render(request, 'urbanapp/account-settings.html')
 
+def provider_dashboard(request):
+    return render(request, 'provider/provider-dashboard.html')
+
+def provider_services(request):
+    return render(request, 'provider/provider-services.html')
+
+def provider_booking(request):
+    return render(request, 'provider/provider-booking.html')
+
 def register(request):
     """Handle GET/POST for user registration.
 

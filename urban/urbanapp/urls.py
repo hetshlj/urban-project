@@ -31,4 +31,7 @@ urlpatterns = [
     path('customer-reviews/', views.user_reviews, name='user_reviews'),
     path('user-chat/', views.user_chat, name='user_chat'),
     path('account-settings/', views.account_settings, name='account_settings'),
+    path('provider/dashboard/', views.provider_dashboard, name='provider_dashboard'),
+    path('provider/services/', views.provider_services, name='provider_services'),
+    path('provider/booking/', views.provider_booking, name='provider_booking'),
 ]
