@@ -143,6 +143,19 @@ def provider_verification(request):
 def provider_delete_account(request):
     return render(request, 'provider/provider-delete-account.html')
 
+def admin_users(request):
+    # List users for admin interface
+    # Select related profile to avoid extra queries
+    users = User.objects.all().select_related('profile').order_by('-date_joined')
+    return render(request, 'admin/users.html', {'users': users})
+
+def admin_customers(request):
+    return render(request, 'admin/customers.html')
+
+def admin_providers(request):
+    return render(request, 'admin/providers.html')
+
+
 def provider_login(request):
     """Handle provider login (GET shows form, POST authenticates providers only).
 

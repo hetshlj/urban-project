@@ -83,6 +83,8 @@ path('reset-password/', views.reset_password, name='reset_password'),
     path('admin/password-reset/done/', views.AdminPasswordResetDoneView.as_view(), name='admin_password_reset_done'),
     path('admin/reset/<uidb64>/<token>/', views.AdminPasswordResetConfirmView.as_view(), name='admin_password_reset_confirm'),
     path('admin/reset/done/', views.AdminPasswordResetCompleteView.as_view(), name='admin_password_reset_complete'),
-
+    path('admin/users/', views.admin_users, name='admin_users'),
+    path('admin/customers/', views.admin_customers, name='admin_customers'),
+    path('admin/providers/', views.admin_providers, name='admin_providers'),
 
 ]
