@@ -64,6 +64,11 @@ path('reset-password/', views.reset_password, name='reset_password'),
     path('provider/delete-account/', views.provider_delete_account, name='provider_delete_account'),
     path('provider/login/', views.provider_login, name='provider_login'),
     path('provider/register/', views.provider_register, name='provider_register'),
+    # Provider password reset (separate from user)
+    path('provider/password-reset/', views.ProviderPasswordResetView.as_view(), name='provider_password_reset'),
+    path('provider/password-reset/done/', views.ProviderPasswordResetDoneView.as_view(), name='provider_password_reset_done'),
+    path('provider/reset/<uidb64>/<token>/', views.ProviderPasswordResetConfirmView.as_view(), name='provider_password_reset_confirm'),
+    path('provider/reset/done/', views.ProviderPasswordResetCompleteView.as_view(), name='provider_password_reset_complete'),
 
     path('admin/', views.admindash, name='admindash'),
     path('admin/add-service/', views.add_service, name='add_service'),
@@ -72,6 +77,12 @@ path('reset-password/', views.reset_password, name='reset_password'),
     path('admin/sub-categories/', views.admin_sub_categories, name='admin_sub_categories'),
     path('admin/categories/', views.admin_categories, name='admin_categories'),
     path('admin/signin/', views.admin_signin, name='admin_signin'),
+    path('admin/signup/', views.admin_register, name='admin_register'),
+    # Admin password reset (separate from user password reset)
+    path('admin/password-reset/', views.AdminPasswordResetView.as_view(), name='admin_password_reset'),
+    path('admin/password-reset/done/', views.AdminPasswordResetDoneView.as_view(), name='admin_password_reset_done'),
+    path('admin/reset/<uidb64>/<token>/', views.AdminPasswordResetConfirmView.as_view(), name='admin_password_reset_confirm'),
+    path('admin/reset/done/', views.AdminPasswordResetCompleteView.as_view(), name='admin_password_reset_complete'),
 
 
 ]

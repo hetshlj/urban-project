@@ -9,6 +9,9 @@ from django.utils import timezone
 import random
 import datetime
 import os
+from django.contrib.auth import views as auth_views
+from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
 
 
 def home(request):
@@ -141,14 +144,113 @@ def provider_delete_account(request):
     return render(request, 'provider/provider-delete-account.html')
 
 def provider_login(request):
+    """Handle provider login (GET shows form, POST authenticates providers only).
+
+    Accepts 'username' (or email) and 'password'. Only allows users who have an
+    associated UserProfile with a truthy phone or explicit provider flag in DB.
+    """
+    if request.method == 'POST':
+        username = request.POST.get('username', '').strip()
+        password = request.POST.get('password', '')
+
+        user = authenticate(request, username=username, password=password)
+        if user is None and '@' in username:
+            from django.contrib.auth.models import User as DjangoUser
+            candidate = DjangoUser.objects.filter(email__iexact=username).first()
+            if candidate:
+                user = authenticate(request, username=candidate.username, password=password)
+
+        if user is not None:
+            # ensure this user is a provider via profile or DB flag
+            profile = getattr(user, 'profile', None)
+            is_provider = False
+            if profile:
+                # the SQL schema uses provider_profile linked to auth_user; we treat
+                # presence of UserProfile and non-empty phone as a provider marker here.
+                is_provider = bool(getattr(profile, 'phone', None))
+
+            if not is_provider:
+                messages.error(request, 'You are not registered as a provider.')
+                return redirect('provider_login')
+
+            if not user.is_active:
+                messages.error(request, 'This account is inactive.')
+                return redirect('provider_login')
+
+            login(request, user)
+            messages.success(request, 'Provider logged in successfully.')
+            return redirect('provider_dashboard')
+        else:
+            messages.error(request, 'Invalid username or password.')
+            return redirect('provider_login')
+
     return render(request, 'provider/provider-login.html')
 
 def provider_register(request):
     """Handle GET/POST for provider registration."""
     if request.method == 'POST':
-        # Handle provider registration logic
-        pass
+        first_name = request.POST.get('first_name', '').strip()
+        email = request.POST.get('email', '').strip().lower()
+        phone = request.POST.get('phone', '').strip()
+        password = request.POST.get('password', '')
+
+        if not email or not password:
+            messages.error(request, 'Email and password are required.')
+            return redirect('provider_register')
+
+        chosen_username = email
+        from django.contrib.auth import get_user_model
+        UserModel = get_user_model()
+        if UserModel.objects.filter(username__iexact=chosen_username).exists() or UserModel.objects.filter(email__iexact=email).exists():
+            messages.error(request, 'A user with that email already exists.')
+            return redirect('provider_register')
+
+        try:
+            with transaction.atomic():
+                user = UserModel.objects.create_user(username=chosen_username, email=email, password=password)
+                user.first_name = first_name
+                user.save()
+                # Create or update profile and mark as provider by setting phone
+                UserProfile.objects.create(user=user, phone=phone)
+
+            messages.success(request, 'Provider account created. Please sign in.')
+            return redirect('provider_login')
+        except Exception as e:
+            messages.error(request, 'Unable to create provider account. Error: %s' % str(e))
+            return redirect('provider_register')
+
     return render(request, 'provider/provider-register.html')
+
+
+class ProviderPasswordResetView(auth_views.PasswordResetView):
+    """Password reset only for provider accounts (User has a UserProfile with phone)."""
+    template_name = 'provider/forgot-password.html'
+    email_template_name = 'provider/password_reset_email.html'
+    subject_template_name = 'provider/password_reset_subject.txt'
+    success_url = reverse_lazy('provider_password_reset_done')
+
+    def get_users(self, email):
+        from django.contrib.auth import get_user_model
+        UserModel = get_user_model()
+        # find users with matching email and who have a profile (provider)
+        candidates = UserModel._default_manager.filter(email__iexact=email, is_active=True)
+        for u in candidates:
+            profile = getattr(u, 'profile', None)
+            if profile and getattr(profile, 'phone', None):
+                yield u
+
+
+class ProviderPasswordResetDoneView(auth_views.PasswordResetDoneView):
+    template_name = 'provider/password_reset_done.html'
+
+
+class ProviderPasswordResetConfirmView(auth_views.PasswordResetConfirmView):
+    template_name = 'provider/password_reset_confirm.html'
+    success_url = reverse_lazy('provider_password_reset_complete')
+
+
+class ProviderPasswordResetCompleteView(auth_views.PasswordResetCompleteView):
+    template_name = 'provider/password_reset_complete.html'
 
 def reset_password(request):
     return render(request, 'urbanapp/reset-password.html')
@@ -172,7 +274,107 @@ def admin_categories(request):
     return render(request,'admin/categories.html')
 
 def admin_signin(request):
+    # Handle admin signin (staff users only).
+    if request.method == 'POST':
+        username = request.POST.get('username', '').strip()
+        password = request.POST.get('password', '')
+
+        user = authenticate(request, username=username, password=password)
+        if user is None and '@' in username:
+            # allow email login for admin as well
+            try:
+                from django.contrib.auth.models import User as DjangoUser
+                candidate = DjangoUser.objects.filter(email__iexact=username).first()
+                if candidate:
+                    user = authenticate(request, username=candidate.username, password=password)
+            except Exception:
+                user = None
+
+        if user is not None:
+            if not user.is_active:
+                messages.error(request, 'This account is inactive.')
+            elif not user.is_staff:
+                messages.error(request, 'You do not have permission to access the admin.')
+            else:
+                login(request, user)
+                messages.success(request, 'Admin logged in successfully.')
+                return redirect('admindash')
+        else:
+            messages.error(request, 'Invalid username or password.')
+
+        return redirect('admin_signin')
+
     return render(request,'admin/signin.html')
+
+
+def admin_register(request):
+    """Register a new admin/staff user. Creates a User with is_staff=True and an associated UserProfile.
+
+    This view mirrors the public `register` behaviour but marks the created user as staff.
+    In a real project you should protect admin creation (invite-only or require higher privileges).
+    """
+    if request.method == 'POST':
+        username = request.POST.get('username', '').strip()
+        email = request.POST.get('email', '').strip().lower()
+        phone = request.POST.get('phone', '').strip()
+        password = request.POST.get('password', '')
+
+        if not email or not password:
+            messages.error(request, 'Email and password are required.')
+            return redirect('admin_register')
+
+        chosen_username = username or email
+
+        if User.objects.filter(username__iexact=chosen_username).exists():
+            messages.error(request, 'A user with that username already exists.')
+            return redirect('admin_register')
+
+        if User.objects.filter(email__iexact=email).exists():
+            messages.error(request, 'A user with that email already exists.')
+            return redirect('admin_register')
+
+        try:
+            with transaction.atomic():
+                user = User.objects.create_user(username=chosen_username, email=email, password=password)
+                user.is_staff = True
+                user.save()
+                UserProfile.objects.create(user=user, phone=phone)
+
+            messages.success(request, 'Admin account created. Please sign in.')
+            return redirect('admin_signin')
+        except Exception as e:
+            messages.error(request, 'Unable to create admin account. Error: %s' % str(e))
+            return redirect('admin_register')
+
+    return render(request, 'admin/signup.html')
+
+
+class AdminPasswordResetView(auth_views.PasswordResetView):
+    """Send password reset emails only to staff users (is_staff=True)."""
+    template_name = 'admin/forgot-password.html'
+    email_template_name = 'admin/password_reset_email.html'
+    subject_template_name = 'admin/password_reset_subject.txt'
+    success_url = reverse_lazy('admin_password_reset_done')
+
+    def get_users(self, email):
+        """Return only active staff users with given email."""
+        from django.contrib.auth import get_user_model
+        UserModel = get_user_model()
+        active_users = UserModel._default_manager.filter(email__iexact=email, is_active=True, is_staff=True)
+        return (u for u in active_users)
+
+
+class AdminPasswordResetDoneView(auth_views.PasswordResetDoneView):
+    template_name = 'admin/password_reset_done.html'
+
+
+class AdminPasswordResetConfirmView(auth_views.PasswordResetConfirmView):
+    template_name = 'admin/password_reset_confirm.html'
+    success_url = reverse_lazy('admin_password_reset_complete')
+
+
+class AdminPasswordResetCompleteView(auth_views.PasswordResetCompleteView):
+    template_name = 'admin/password_reset_complete.html'
 
 def register(request):
     if request.method == 'POST':

@@ -1,65 +1,87 @@
-{% extends "admin/partials/head.html" %}
 {% load static %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="main-wrapper">
+
+{% include "admin/partials/head.html" %}
+
+<body>
+    <div class="main-wrapper">
         <div class="login-pages">
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-lg-12">
                         <div class="login-logo">
-                            <img src="assets/img/logo-login.png" alt="img">
+                            <img src="{% static 'assetss/img/logo-login.png' %}" alt="img">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="login-images">
-                            <img src="assets/img/login-banner.png" alt="img">
+                            <img src="{% static 'assetss/img/login-banner.png' %}" alt="img">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="login-content">
                             <div class="login-contenthead">
                                 <h5>Login</h5>
-                                <h6>We'll send a confirmation code to your email.</h6>
+                                <h6>Enter your admin credentials.</h6>
                             </div>
                             <div class="login-input">
-                                <div class="form-group">
-                                    <label>E-mail</label>
-                                    <input type="text" class="form-control" placeholder="example@email.com">
+                                {% if messages %}
+                                <div class="mb-3">
+                                    {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                                    {% endfor %}
                                 </div>
-                                <div class="form-group">
-                                    <div class="d-flex justify-content-between">
-                                        <label>Password</label>
-                                        <a class="forgetpassword-link" href="forget-password.html">Forgot password?</a>
+                                {% endif %}
+
+                                <form method="post" action="">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label>Username or E-mail</label>
+                                        <input name="username" type="text" class="form-control" placeholder="username or email" required>
                                     </div>
-                                    <div class="pass-group">
-                                        <input type="password" class="form-control pass-input" placeholder="********">
-                                        <span class="fas toggle-password fa-eye-slash"></span>
+                                    <div class="form-group">
+                                        <div class="d-flex justify-content-between">
+                                            <label>Password</label>
+                                            <a class="forgetpassword-link" href="{% url 'admin_password_reset' %}">Forgot password?</a>
+                                        </div>
+                                        <div class="pass-group">
+                                            <input name="password" type="password" class="form-control pass-input" placeholder="********" required>
+                                            <span class="fas toggle-password fa-eye-slash"></span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="filter-checkbox mb-3">
-                                    <ul class="d-flex justify-content-between">
-                                        <li>
-                                            <label class="checkboxs">
-                                                <input type="checkbox">
-                                                <span><i></i></span>
-                                                <b class="check-content">Remember Me</b>
-                                            </label>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="login-button">
-                                <a href="index.html" class="btn btn-login">Login</a>
+                                    <div class="filter-checkbox mb-3">
+                                        <ul class="d-flex justify-content-between">
+                                            <li>
+                                                <label class="checkboxs">
+                                                    <input type="checkbox" name="remember">
+                                                    <span><i></i></span>
+                                                    <b class="check-content">Remember Me</b>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="login-button">
+                                        <button type="submit" class="btn btn-login">Login</button>
+                                    </div>
+                                </form>
                             </div>
                             <div class="signinform text-center">
-                                <h4>Don’t have an account? <a href="signup.html" class="hover-a">Sign Up</a></h4>
-                                </div>
+                                <h4>Don’t have an account? <a href="/admin/signup" class="hover-a">Sign Up</a></h4>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    {% include "admin/partials/footer-scripts.html" %}
 
-    {% endblock %}
+</body>
+
+
+<!-- Mirrored from truelysell.dreamstechnologies.com/html/template/admin/signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 19 Jul 2025 16:24:42 GMT -->
+
+</html>

@@ -1,33 +1,9 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 
-<!-- Mirrored from truelysell.dreamstechnologies.com/html/template/admin/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 19 Jul 2025 16:26:10 GMT -->
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <title>Truelysell | Template</title>
-
-    <!-- Favicons -->
-    <link rel="shortcut icon" href="assets/img/favicon.png">
-
-    <!-- Feathericon CSS -->
-    <link rel="stylesheet" href="assets/css/feather.css">
-
-    <!-- Select 2 -->
-    <link rel="stylesheet" href="assets/css/select2.min.css">
-
-    <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
-    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
-
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="assets/css/admin.css">
-
-</head>
+{% include "admin/partials/head.html" %}
 
 <body>
     <div class="main-wrapper">
@@ -36,12 +12,12 @@
                 <div class="row align-items-center">
                     <div class="col-lg-12">
                         <div class="login-logo">
-                            <img src="assets/img/logo-login.png" alt="img">
+                            <img src="{% static 'assetss/img/logo-login.png' %}" alt="img">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="login-images">
-                            <img src="assets/img/login-banner.png" alt="img">
+                            <img src="{% static 'assetss/img/login-banner.png' %}" alt="img">
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -51,40 +27,56 @@
                                 <h6>Continue where you left off</h6>
                             </div>
                             <div class="login-input">
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" class="form-control" placeholder="Name">
+                                {% if messages %}
+                                <div class="mb-3">
+                                    {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                                    {% endfor %}
                                 </div>
-                                <div class="form-group">
-                                    <label>E-mail</label>
-                                    <input type="text" class="form-control" placeholder="example@email.com">
-                                </div>
-                                <div class="form-group">
-                                    <div class="d-flex justify-content-between">
-                                        <label>Password</label>
+                                {% endif %}
+
+                                <form method="post" action="{% url 'admin_register' %}">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <input name="username" type="text" class="form-control" placeholder="Name or username" required>
                                     </div>
-                                    <div class="pass-group">
-                                        <input type="password" class="form-control pass-input" placeholder="********">
-                                        <span class="fas toggle-password fa-eye-slash"></span>
+                                    <div class="form-group">
+                                        <label>E-mail</label>
+                                        <input name="email" type="email" class="form-control" placeholder="example@email.com" required>
                                     </div>
-                                </div>
-                                <div class="filter-checkbox mb-3">
-                                    <ul class="d-flex justify-content-between">
-                                        <li>
-                                            <label class="checkboxs">
-                                                <input type="checkbox">
-                                                <span><i></i></span>
-                                                <b class="check-content">Remember Me</b>
-                                            </label>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="login-button">
-                                <a href="index.html" class="btn btn-login">Login</a>
+                                    <div class="form-group">
+                                        <label>Phone (optional)</label>
+                                        <input name="phone" type="text" class="form-control" placeholder="phone number">
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="d-flex justify-content-between">
+                                            <label>Password</label>
+                                        </div>
+                                        <div class="pass-group">
+                                            <input name="password" type="password" class="form-control pass-input" placeholder="********" required>
+                                            <span class="fas toggle-password fa-eye-slash"></span>
+                                        </div>
+                                    </div>
+                                    <div class="filter-checkbox mb-3">
+                                        <ul class="d-flex justify-content-between">
+                                            <li>
+                                                <label class="checkboxs">
+                                                    <input type="checkbox" name="remember">
+                                                    <span><i></i></span>
+                                                    <b class="check-content">Remember Me</b>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="login-button">
+                                        <button type="submit" class="btn btn-login">Create account</button>
+                                    </div>
+                                </form>
                             </div>
                             <div class="signinform text-center">
-                                <h4>Do have an account? <a href="signin.html" class="hover-a">Sign in</a></h4>
+                                <h4>Do have an account? <a href="{% url 'admin_signin' %}" class="hover-a">Sign in</a></h4>
                                 </div>
                         </div>
                     </div>
@@ -93,23 +85,9 @@
         </div>
     </div>
 
-    <!-- jQuery -->
-    <script src="assets/js/jquery-3.7.1.min.js" type="4f4a8c7849f91301d20ebc8c-text/javascript"></script>
 
-    <!-- Select 2 JS-->
-    <script src="assets/js/select2.min.js" type="4f4a8c7849f91301d20ebc8c-text/javascript"></script>
 
-    <!-- Bootstrap Core JS -->
-    <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js" type="4f4a8c7849f91301d20ebc8c-text/javascript"></script>
-
- <!-- Sweetalert 2 -->
-    <script src="assets/plugins/sweetalert/sweetalert2.all.min.js" type="4f4a8c7849f91301d20ebc8c-text/javascript"></script>
-    <script src="assets/plugins/sweetalert/sweetalerts.min.js" type="4f4a8c7849f91301d20ebc8c-text/javascript"></script>
-
-    <!-- Custom JS -->
-    <script src="assets/js/admin.js" type="4f4a8c7849f91301d20ebc8c-text/javascript"></script>
-
-<script src="../../../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="4f4a8c7849f91301d20ebc8c-|49" defer></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"961b9210ce7c48f4","version":"2025.7.0","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"token":"3ca157e612a14eccbb30cf6db6691c29","b":1}' crossorigin="anonymous"></script>
+{% include "admin/partials/footer-scripts.html" %}
 </body>
 
 
