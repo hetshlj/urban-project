@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}admin - Urban Project{% endblock %}</title>
+
+    {# shared head partial contains favicons and main CSS files #}
+    {% include 'admin/partials/head.html' %}
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body class="provider-page">
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+
+        {# Header / Navbar #}
+
+        {% include 'admin/partials/navbar.html' %}
+
+        <!-- Main content row: sidebar column + content column -->
+
+        {% include 'admin/partials/sidebar.html' %}
+
+        {% block content %}
+    <!-- Page-specific content will go here -->
+    {% endblock %}
+    </div>
+    </div>
+    <!-- /Page Wrapper -->
+
+    </div>
+    <!-- /Main Wrapper -->
+
+    {# Footer scripts: main JS includes #}
+    {% include 'admin/partials/footer-scripts.html' %}
+
+    {% block extra_js %}{% endblock %}
+
+</body>
+
+</html>

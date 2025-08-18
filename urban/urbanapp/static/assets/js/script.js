@@ -39,7 +39,7 @@ Template Name: Truelysell - Bootstrap Template
 		$('html').toggleClass('menu-opened');
 		return false;
 	});
-	
+
 
 	$(document).on('click', '#mobile_btn', function () {
 		$wrapper.toggleClass('slide-nav');
@@ -390,7 +390,7 @@ $(document).ready(function () {
 			asNavFor: '.client-img.slider-nav'
 		});
 	}
-	
+
 	if ($('.client-img.slider-nav').length > 0) {
 		$('.client-img.slider-nav').slick({
 			slidesToShow: 3,
@@ -464,7 +464,7 @@ $(document).ready(function () {
 		})
 	}
 
-	// Service slider 
+	// Service slider
 	if ($('.owl-carousel.partners-slider').length > 0) {
 		$('.owl-carousel.partners-slider').owlCarousel({
 			loop: true,
@@ -1196,7 +1196,7 @@ $(document).ready(function () {
 		}
 	});
 
-	
+
 	// Service slider
 	if ($('.owl-carousel.customer-review-slider').length > 0) {
 		$('.owl-carousel.customer-review-slider').owlCarousel({
@@ -2307,7 +2307,7 @@ if ($('.owl-carousel.our-recent-blog').length > 0) {
 	})
 }
 
-// Service slider 
+// Service slider
 if ($('.owl-carousel.partners-slider-seven').length > 0) {
 	$('.owl-carousel.partners-slider-seven').owlCarousel({
 		loop: true,
@@ -2407,10 +2407,22 @@ if ($('#calendar').length > 0) {
 
 // Calendar Booking
 
-if ($('#calendar-book').length > 0) {
-	document.addEventListener('DOMContentLoaded', function () {
-		var calendarEl = document.getElementById('calendar-book');
+// Calendar Booking - robust initialization with diagnostics
+document.addEventListener('DOMContentLoaded', function () {
+	var calendarEl = document.getElementById('calendar-book');
 
+	if (!calendarEl) {
+		// Not every page has a calendar; nothing to do here.
+		console.debug('FullCalendar: #calendar-book not present on this page.');
+		return;
+	}
+
+	if (typeof FullCalendar === 'undefined') {
+		console.error('FullCalendar is not loaded. Ensure assets/plugins/fullcalendar/main.min.js is included before script.js.');
+		return;
+	}
+
+	try {
 		var calendar = new FullCalendar.Calendar(calendarEl, {
 			themeSystem: 'bootstrap5',
 
@@ -2471,27 +2483,28 @@ if ($('#calendar-book').length > 0) {
 			],
 			eventClick: function (event, calEvent, jsEvent, view) {
 				// Using event delegation for dynamically added content
-				$(document).ready(function () {
-			// Bind event handlers globally to handle clicks
-			$(document).on('click', '.fc-event-title', function () {
-				$('.toggle-sidebar').addClass('sidebar-popup');
-				$('.sidebar-overlay').addClass('opened');
-			});
+				// Bind handlers once; clicking events will open sidebar
+				$(document).on('click', '.fc-event-title', function () {
+					$('.toggle-sidebar').addClass('sidebar-popup');
+					$('.sidebar-overlay').addClass('opened');
+				});
 
-			$(document).on('click', '.sidebar-close', function () {
-				$('.toggle-sidebar').removeClass('sidebar-popup');
-				$('.sidebar-overlay').removeClass('opened');
-			});
-			$(document).on('click', '.sidebar-overlay', function () {
-				$('.toggle-sidebar').removeClass('sidebar-popup');
-			});
-		});
+				$(document).on('click', '.sidebar-close', function () {
+					$('.toggle-sidebar').removeClass('sidebar-popup');
+					$('.sidebar-overlay').removeClass('opened');
+				});
+
+				$(document).on('click', '.sidebar-overlay', function () {
+					$('.toggle-sidebar').removeClass('sidebar-popup');
+				});
 			}
 		});
 
 		calendar.render();
-	});
-}
+	} catch (err) {
+		console.error('FullCalendar initialization failed:', err);
+	}
+});
 
 // toggle-password
 if ($('.toggle-password').length > 0) {
@@ -2557,7 +2570,7 @@ if ($('.datetimepicker').length > 0) {
 	});
 }
 
-// Month Year picker 
+// Month Year picker
 if ($('.monthpicker').length > 0) {
 	$('.monthpicker').datetimepicker({
 		format: 'MM-YYYY',
@@ -2683,7 +2696,7 @@ $(document).ready(function () {
 });
 
 
-// fade in scroll 
+// fade in scroll
 
 $(document).ready(function () {
 	if ($('.main-wrapper .aos').length > 0) {
@@ -2737,7 +2750,7 @@ $('.user-sidebar a').on('click', function(e) {
 $('.user-sidebar ul li.submenu a.active').parents('li:last').children('a:first').addClass('active').trigger('click');
 
 if ($('.typed').length > 0) {
-	
+
 document.addEventListener('DOMContentLoaded', function () {
 	ityped.init(document.querySelector(".typed"), {
 	  strings: ['Carpenders', 'Stylist', 'Builders'],
@@ -2753,7 +2766,7 @@ document.addEventListener('DOMContentLoaded', function () {
 $(document).ready(function () {
 	let progressVal = 0;
 	let businessType = 0;
-	
+
 	$(".next_btns").on('click', function () {
 		$(this).parent().parent().parent().next().fadeIn('slow');
 		$(this).parent().parent().parent().css({
@@ -2768,7 +2781,7 @@ $(document).ready(function () {
 			'display': 'none'
 		});
 		progressVal = progressVal - 1;
-		$('.progress-active').removeClass('progress-active').prev().removeClass('progress-activated').addClass('progress-active'); 
+		$('.progress-active').removeClass('progress-active').prev().removeClass('progress-activated').addClass('progress-active');
 	});
 });
 //Increment Decrement Numberes

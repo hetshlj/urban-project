@@ -1,0 +1,371 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{% block content %}
+        <div class="page-wrapper page-settings">
+            <div class="content">
+                <div class="content-page-header content-page-headersplit mb-0">
+                    <h5>Sub Categories</h5>
+                    <div class="list-btn">
+                        <ul>
+                            <li>
+                                <div class="filter-sorting">
+                                    <ul>
+                                        <li>
+                                            <a href="javascript:void(0);" class="filter-sets"><i class="fe fe-filter me-2"></i>Filter</a>
+                                        </li>
+                                        <li>
+                                            <span><img src="assets/img/icons/sort.svg" class="me-2" alt="img"></span>
+                                            <div class="review-sort">
+                                                <select class="select">
+                                                    <option>A -> Z</option>
+                                                    <option>Z -> A</option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#add-subcategory"><i class="fa fa-plus me-2"></i>Add Sub Category</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 ">
+                        <div class="table-resposnive table-div">
+                            <table class="table datatable">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Sub Category</th>
+                                        <th>Sub Category Slug</th>
+                                        <th>Category</th>
+                                        <th>Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>
+                                            <div class="table-imgname">
+                                                <img src="assets/img/services/service-03.jpg" class="me-2" alt="img">
+                                                <span>Service</span>
+                                            </div>
+                                        </td>
+                                        <td>service</td>
+                                        <td>Computer</td>
+                                        <td>28 Sep 2023</td>
+                                        <td>
+											<div class="table-actions d-flex">
+                                                <button class="btn delete-table me-2" type="button" data-bs-toggle="modal" data-bs-target="#edit-subcategory">
+                                                   <i class="fe fe-edit"></i>
+                                                </button>
+                                                <button class="btn delete-table" type="button" data-bs-toggle="modal" data-bs-target="#delete-subcategory">
+                                                    <i class="fe fe-trash-2"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>
+                                            <div class="table-imgname">
+                                                <img src="assets/img/services/service-02.jpg" class="me-2" alt="img">
+                                                <span>Car</span>
+                                            </div>
+                                        </td>
+                                        <td>car</td>
+                                        <td>Automobile</td>
+                                        <td>7 Sep 2023</td>
+                                        <td>
+											<div class="table-actions d-flex">
+                                                <button class="btn delete-table me-2" type="button" data-bs-toggle="modal" data-bs-target="#edit-subcategory">
+                                                   <i class="fe fe-edit"></i>
+                                                </button>
+                                                <button class="btn delete-table" type="button" data-bs-toggle="modal" data-bs-target="#delete-subcategory">
+                                                    <i class="fe fe-trash-2"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>
+                                            <div class="table-imgname">
+                                                <img src="assets/img/services/service-04.jpg" class="me-2" alt="img">
+                                                <span>Polish</span>
+                                            </div>
+                                        </td>
+                                        <td>polish</td>
+                                        <td>Car Wash</td>
+                                        <td>17 Sep 2023</td>
+                                        <td>
+											<div class="table-actions d-flex">
+                                                <button class="btn delete-table me-2" type="button" data-bs-toggle="modal" data-bs-target="#edit-subcategory">
+                                                   <i class="fe fe-edit"></i>
+                                                </button>
+                                                <button class="btn delete-table" type="button" data-bs-toggle="modal" data-bs-target="#delete-subcategory">
+                                                    <i class="fe fe-trash-2"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>
+                                            <div class="table-imgname">
+                                                <img src="assets/img/services/service-09.jpg" class="me-2" alt="img">
+                                                <span>Sofa</span>
+                                            </div>
+                                        </td>
+                                        <td>sofa</td>
+                                        <td>Cleaning</td>
+                                        <td>23 Sep 2023</td>
+                                        <td>
+											<div class="table-actions d-flex">
+                                                <button class="btn delete-table me-2" type="button" data-bs-toggle="modal" data-bs-target="#edit-subcategory">
+                                                   <i class="fe fe-edit"></i>
+                                                </button>
+                                                <button class="btn delete-table" type="button" data-bs-toggle="modal" data-bs-target="#delete-subcategory">
+                                                    <i class="fe fe-trash-2"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>
+                                            <div class="table-imgname">
+                                                <img src="assets/img/services/service-08.jpg" class="me-2" alt="img">
+                                                <span>Building</span>
+                                            </div>
+                                        </td>
+                                        <td>building</td>
+                                        <td>Construction</td>
+                                        <td>23 Sep 2023</td>
+                                        <td>
+											<div class="table-actions d-flex">
+                                                <button class="btn delete-table me-2" type="button" data-bs-toggle="modal" data-bs-target="#edit-subcategory">
+                                                   <i class="fe fe-edit"></i>
+                                                </button>
+                                                <button class="btn delete-table" type="button" data-bs-toggle="modal" data-bs-target="#delete-subcategory">
+                                                    <i class="fe fe-trash-2"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>
+                                            <div class="table-imgname">
+                                                <img src="assets/img/services/service-07.jpg" class="me-2" alt="img">
+                                                <span>Decoration</span>
+                                            </div>
+                                        </td>
+                                        <td>decoration</td>
+                                        <td>Interior</td>
+                                        <td>1 Sep 2023</td>
+                                        <td>
+											<div class="table-actions d-flex">
+                                                <button class="btn delete-table me-2" type="button" data-bs-toggle="modal" data-bs-target="#edit-subcategory">
+                                                   <i class="fe fe-edit"></i>
+                                                </button>
+                                                <button class="btn delete-table" type="button" data-bs-toggle="modal" data-bs-target="#delete-subcategory">
+                                                    <i class="fe fe-trash-2"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>
+                                            <div class="table-imgname">
+                                                <img src="assets/img/services/service-09.jpg" class="me-2" alt="img">
+                                                <span>Wall</span>
+                                            </div>
+                                        </td>
+                                        <td>wall</td>
+                                        <td>Painting</td>
+                                        <td>10 Sep 2023</td>
+                                        <td>
+											<div class="table-actions d-flex">
+                                                <button class="btn delete-table me-2" type="button" data-bs-toggle="modal" data-bs-target="#edit-subcategory">
+                                                   <i class="fe fe-edit"></i>
+                                                </button>
+                                                <button class="btn delete-table" type="button" data-bs-toggle="modal" data-bs-target="#delete-subcategory">
+                                                    <i class="fe fe-trash-2"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>
+                                            <div class="table-imgname">
+                                                <img src="assets/img/services/service-12.jpg" class="me-2" alt="img">
+                                                <span>Fitting</span>
+                                            </div>
+                                        </td>
+                                        <td>fitting</td>
+                                        <td>Plumbing</td>
+                                        <td>10 Sep 2023</td>
+                                        <td>
+											<div class="table-actions d-flex">
+                                                <button class="btn delete-table me-2" type="button" data-bs-toggle="modal" data-bs-target="#edit-subcategory">
+                                                   <i class="fe fe-edit"></i>
+                                                </button>
+                                                <button class="btn delete-table" type="button" data-bs-toggle="modal" data-bs-target="#delete-subcategory">
+                                                    <i class="fe fe-trash-2"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<!-- Add Sub Category -->
+    <div class="modal fade" id="add-subcategory">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Add Sub Category</h5>
+					<button type="button" class="btn-close close-modal" data-bs-dismiss="modal" aria-label="Close">
+						<i class="fe fe-x"></i>
+					</button>
+				</div>
+				<div class="modal-body pt-0">
+					<form>
+						<div class="mb-3">
+							<label class="form-label">Parent Category</label>
+							<select class="select">
+								<option>Select Category</option>
+								<option>Construction</option>
+								<option>Car Wash</option>
+								<option>Computer</option>
+							</select>
+						</div>
+						<div class="mb-3">
+							<label class="form-label">Sub Category</label>
+							<input type="text" class="form-control">
+						</div>
+						<div class="mb-3">
+							<label class="form-label">Sub Category Slug <small class="form-text text-muted">(Ex:test-slug)</small></label>
+							<input type="text" class="form-control">
+						</div>
+						<div class="mb-4">
+							<label class="form-label">Sub Category Image</label>
+							<div class="form-uploads">
+								<div class="form-uploads-path">
+									<img src="assets/img/icons/upload.svg" alt="img">
+									<div class="file-browse">
+										<h6>Drag & drop image or </h6>
+										<div class="file-browse-path">
+											<input type="file">
+											<a href="javascript:void(0);"> Browse</a>
+										</div>
+									</div>
+									<h5>Supported formates: JPEG, PNG</h5>
+								</div>
+							</div>
+						</div>
+						<div class="text-end">
+							<button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancel</button>
+							<button type="submit" class="btn btn-primary">Save</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /Add Sub Category -->
+
+	<!-- Edit Sub Category -->
+    <div class="modal fade" id="edit-subcategory">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Edit Sub Category</h5>
+					<button type="button" class="btn-close close-modal" data-bs-dismiss="modal" aria-label="Close">
+						<i class="fe fe-x"></i>
+					</button>
+				</div>
+				<div class="modal-body pt-0">
+					<form>
+						<div class="mb-3">
+							<label class="form-label">Parent Category</label>
+							<select class="select">
+								<option>Select Category</option>
+								<option>Construction</option>
+								<option selected>Car Wash</option>
+								<option>Computer</option>
+							</select>
+						</div>
+						<div class="mb-3">
+							<label class="form-label">Sub Category</label>
+							<input type="text" class="form-control" value="Polish">
+						</div>
+						<div class="mb-3">
+							<label class="form-label">Sub Category Slug <small class="form-text text-muted">(Ex:test-slug)</small></label>
+							<input type="text" class="form-control" value="polish">
+						</div>
+						<div class="mb-4">
+							<label class="form-label">Sub Category Image</label>
+							<div class="form-uploads">
+								<div class="form-uploads-path">
+									<img src="assets/img/icons/upload.svg" alt="img">
+									<div class="file-browse">
+										<h6>Drag & drop image or </h6>
+										<div class="file-browse-path">
+											<input type="file">
+											<a href="javascript:void(0);"> Browse</a>
+										</div>
+									</div>
+									<h5>Supported formates: JPEG, PNG</h5>
+								</div>
+							</div>
+						</div>
+						<div class="text-end">
+							<button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancel</button>
+							<button type="submit" class="btn btn-primary">Save Changes</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /Edit Sub Category -->
+
+	<!-- Delete Sub Category -->
+	<div class="modal fade" id="delete-subcategory">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body pt-0">
+                    <div class="text-center">
+                        <i class="fe fe-trash-2 text-danger fs-1"></i>
+						<div class="mt-4">
+                            <h4>Delete Sub Category?</h4>
+                            <p class="text-muted mb-0">Are you sure want to delete this?</p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2 justify-content-center mt-4">
+                        <button type="button" class="btn w-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn w-sm btn-danger">Yes, Delete It!</button>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</div>
+    <!-- /Delete Sub Category -->
+     
+{% endblock %}

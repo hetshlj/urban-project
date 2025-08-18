@@ -5,6 +5,11 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
+    path('blog-grid/', views.blog_grid, name='blog_grid'),
+    path('blogs/', views.blog_list, name='blog_list'),
+    path('blog-details/', views.blog_details, name='blog_details'),
+    path('contact/', views.contact, name='contact'),
+    path('how-it-works/', views.how_it_works, name='how_it_works'),
     path('register/', views.register, name='register'),
     path('login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
@@ -13,6 +18,9 @@ urlpatterns = [
     path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='urbanapp/password_reset_done.html'), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='urbanapp/password_reset_confirm.html'), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='urbanapp/password_reset_complete.html'), name='password_reset_complete'),
+
+
+path('reset-password/', views.reset_password, name='reset_password'),
     # OTP-based SMS login
     path('login/otp/request/', views.otp_request, name='login_otp_request'),
     path('login/otp/verify/', views.otp_verify, name='login_otp_verify'),
@@ -44,4 +52,26 @@ urlpatterns = [
     path('provider/enquiry/', views.provider_enquiry, name='provider_enquiry'),
     path('provider/earnings/', views.provider_earnings, name='provider_earnings'),
     path('provider/chat/', views.provider_chat, name='provider_chat'),
+    path('provider/appointment-settings/', views.provider_appointment_settings, name='provider_appointment_settings'),
+    path('provider/accounts-settings/', views.provider_accounts_settings, name='provider_accounts_settings'),
+    path('provider/social-profile/', views.provider_social_profile, name='provider_social_profile'),
+    path('provider/security-settings/', views.provider_security_settings, name='provider_security_settings'),
+    path('provider/plan/', views.provider_plan, name='provider_plan'),
+    path('provider/payment-settings/', views.provider_payment_settings, name='provider_payment_settings'),
+    path('provider/notifications/', views.provider_notifications, name='provider_notifications'),
+    path('provider/connected-apps/', views.provider_connected_apps, name='provider_connected_apps'),
+    path('provider/verification/', views.provider_verification, name='provider_verification'),
+    path('provider/delete-account/', views.provider_delete_account, name='provider_delete_account'),
+    path('provider/login/', views.provider_login, name='provider_login'),
+    path('provider/register/', views.provider_register, name='provider_register'),
+
+    path('admin/', views.admindash, name='admindash'),
+    path('admin/add-service/', views.add_service, name='add_service'),
+    path('admin/services/', views.admin_service, name='admin_service'),
+    path('admin/service-settings/', views.admin_service_settings, name='admin_service_settings'),
+    path('admin/sub-categories/', views.admin_sub_categories, name='admin_sub_categories'),
+    path('admin/categories/', views.admin_categories, name='admin_categories'),
+    path('admin/signin/', views.admin_signin, name='admin_signin'),
+
+
 ]

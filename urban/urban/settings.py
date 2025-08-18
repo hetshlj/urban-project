@@ -61,7 +61,8 @@ STATICFILES_DIRS = [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # Include the app-level templates directory so custom admin templates are discovered
+        'DIRS': [BASE_DIR / 'urbanapp' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

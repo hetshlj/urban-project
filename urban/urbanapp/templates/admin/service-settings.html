@@ -1,0 +1,268 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{% block content %}
+
+        <div class="page-wrapper ">
+
+            <div class="content w-100 ps-0 pt-0">
+                <div class="content-sidelink float-start">
+                    <div class="content-sidelinkheading">
+                        <h6>Settings</h6>
+                    </div>
+                    <div class="content-sidelinkmenu">
+                        <ul>
+                            <li>
+                                <h5>General Settings</h5>
+                            </li>
+                            <li><a href="localization.html">Localization </a></li>
+                            <li><a href="account-settings.html">Account Settings </a></li>
+                            <li><a href="security.html">Security</a></li>
+                            <li><a href="social-profiles.html">Social Profiles </a></li>
+                            <li><a href="notifications.html">Notifications</a></li>
+                            <li><a href="connected-apps.html">Connected Apps</a></li>
+                            <li> <a href="appointment-settings.html" >Appointment Settings</a></li>
+                        </ul>
+                        <ul>
+                            <li><h5>Website Settings</h5></li>
+						    <li><a href="site-information.html">Site Information</a></li>
+						    <li><a href="seo-settings.html">Seo Settings</a></li>
+						    <li><a href="preference-settings.html">Preference Settings</a></li>
+						    <li><a href="appearance.html">Appearance </a></li>
+						    <li><h4>Frontend Settings</h4></li>
+						    <li class="submenu-sidelink"><a href="header-settings.html">Header Settings</a></li>
+						    <li class="submenu-sidelink"><a href="footer-settings.html">Footer Settings</a></li>
+						    <li><a href="authentication-settings.html">Authentication Settings</a></li>
+						    <li><a href="social-authentication.html">Social Authentication</a></li>
+						    <li><a href="language.html">Language </a></li>
+                            <li><a href="typography-settings.html" >Typography Settings</a></li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <h5>System Settings</h5>
+                            </li>
+                            <li><a href="email-settings.html">Email Settings </a></li>
+                            <li><a href="sms-settings.html">SMS Settings</a></li>
+                            <li><a href="gdpr-settings.html">GDPR Settings </a></li>
+                            <li><a href="calendar-settings.html" >Calendar Settings</a></li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <h5>Financial Settings</h5>
+                            </li>
+                            <li><a href="payment-gateways.html">Payment Gateways</a></li>
+                            <li><a href="payment-settings.html">Payment Settings</a></li>
+                            <li><a href="tax-rates.html">Tax Rates</a></li>
+                            <li><a href="currencies.html" >Currencies</a></li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <h5><a href="service-settings.html" class="active">Service Settings</a></h5>
+                            </li>
+                        </ul>
+                        <ul>
+						    <li> <h5><a href="provider-settings.html">Provider Settings</a></h5></li>
+                        </ul>
+					    <ul>
+						    <li><h5>Other Settings</h5></li>
+                            <li><a href="storage-settings.html">Storage Settings</a></li>
+                            <li><a href="ban-ip-address.html">Ban IP Address</a></li>
+                            <li><a href="cronjob.html">Cronjob</a></li>
+                            <li>
+                                <h4>Backup</h4>
+                            </li>
+                            <li class="submenu-sidelink"><a href="system-backup.html">System Backup</a></li>
+                            <li class="submenu-sidelink"><a href="database-backup.html">Database Backup</a></li>
+                            <li><a href="system-information.html">System Information</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="content-table">
+                        <div class="col-lg-12">
+                            <div class="content-page-header content-space">
+                                <h5>Service Details</h5>
+                                <span>Enable and disable based on your service request or provider</span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                           <div class="card">
+                                <div class="card-body">
+                                    <div class="location-set">
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-8 col-12">
+                                                <div class="service-detail-blk">
+                                                    <span><img src="assets/img/icons/service-icon-01.svg" alt="Icon" ></span>
+                                                    <div class="location-setcontent">
+                                                        <h5>Manual location based search</h5>
+                                                        <h6>Based on search</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-12 text-end">
+                                                <div class="active-switch">
+                                                    <label class="switch">
+                                                        <input type="checkbox" checked="">
+                                                        <span class="sliders round"></span>
+                                                      </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                   </div>
+                                   <div class="location-set">
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-8 col-12">
+                                                <div class="service-detail-blk">
+                                                    <span><img src="assets/img/icons/service-icon-02.svg" alt="Icon" ></span>
+                                                    <div class="location-setcontent">
+                                                        <h5>Auto approval for services</h5>
+                                                        <h6>Based on service</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-12 text-end">
+                                                <div class="active-switch">
+                                                    <label class="switch">
+                                                        <input type="checkbox" checked="">
+                                                        <span class="sliders round"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="location-set">
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-8 col-12">
+                                                <div class="service-detail-blk">
+                                                    <span><img src="assets/img/icons/service-icon-03.svg" alt="Icon" ></span>
+                                                    <div class="location-setcontent">
+                                                        <h5>Additional services</h5>
+                                                        <h6>Based on service</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-12 text-end">
+                                                <div class="active-switch">
+                                                    <label class="switch">
+                                                        <input type="checkbox" checked="">
+                                                        <span class="sliders round"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="location-set">
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-8 col-12">
+                                                <div class="service-detail-blk">
+                                                    <span><img src="assets/img/icons/service-icon-04.svg" alt="Icon" ></span>
+                                                    <div class="location-setcontent">
+                                                        <h5>Service reviews</h5>
+                                                        <h6>Based on reviews</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-12 text-end">
+                                                <div class="active-switch">
+                                                    <label class="switch">
+                                                        <input type="checkbox" >
+                                                        <span class="sliders round"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="location-set">
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-8 col-12">
+                                                <div class="service-detail-blk">
+                                                    <span><img src="assets/img/icons/service-icon-05.svg" alt="Icon" ></span>
+                                                    <div class="location-setcontent">
+                                                        <h5>Booking option</h5>
+                                                        <h6>Based on options</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-12 text-end">
+                                                <div class="active-switch">
+                                                    <label class="switch">
+                                                        <input type="checkbox" checked="">
+                                                        <span class="sliders round"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="location-set">
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-8 col-12">
+                                                <div class="service-detail-blk">
+                                                    <span><img src="assets/img/icons/service-icon-06.svg" alt="Icon" ></span>
+                                                    <div class="location-setcontent">
+                                                        <h5>Service offered</h5>
+                                                        <h6>What’s included in this service</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-12 text-end">
+                                                <div class="active-switch">
+                                                    <label class="switch">
+                                                        <input type="checkbox" checked="">
+                                                        <span class="sliders round"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="location-set">
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-8 col-12">
+                                                <div class="service-detail-blk">
+                                                    <span><img src="assets/img/icons/service-icon-07.svg" alt="Icon" ></span>
+                                                    <div class="location-setcontent">
+                                                        <h5>Service availability</h5>
+                                                        <h6>What’s included in this service</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-12 text-end">
+                                                <div class="active-switch">
+                                                    <label class="switch">
+                                                        <input type="checkbox" checked="">
+                                                        <span class="sliders round"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="location-set mb-0">
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-8 col-12">
+                                                <div class="service-detail-blk">
+                                                    <span><img src="assets/img/icons/service-icon-08.svg" alt="Icon" ></span>
+                                                    <div class="location-setcontent">
+                                                        <h5>Provider details like email, phone, provider status</h5>
+                                                        <h6>online/offline</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-12 text-end">
+                                                <div class="active-switch">
+                                                    <label class="switch">
+                                                        <input type="checkbox" >
+                                                        <span class="sliders round"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

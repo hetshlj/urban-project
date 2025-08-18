@@ -14,25 +14,35 @@ import os
 def home(request):
     return render(request, 'urbanapp/index.html')
 
-
 def about(request):
     return render(request, 'urbanapp/about.html')
 
+def blog_grid(request):
+    return render(request, 'urbanapp/blog-grid.html')
+
+def blog_list(request):
+    return render(request, 'urbanapp/blogs.html')
+
+def blog_details(request):
+    return render(request, 'urbanapp/blog-details.html')
+
+def contact(request):
+    return render(request, 'urbanapp/contact-us.html')
+
+def how_it_works(request):
+    return render(request, 'urbanapp/how-it-works.html')
 
 def services(request):
     return render(request, 'urbanapp/services-list.html')
 
-
 def servicedetails(request):
     return render(request, 'urbanapp/service-details.html')
-
 
 def categories(request):
     return render(request, 'urbanapp/categories.html')
 
 def providers(request):
     return render(request, 'urbanapp/providers.html')
-
 
 def provider_details(request):
     return render(request, 'urbanapp/provider-details.html')
@@ -74,7 +84,7 @@ def provider_staff(request):
     return render(request, 'provider/staff-list.html')
 
 def provider_customers(request):
-    return render(request, 'provider/provider-customers.html')
+    return render(request, 'provider/customer-list.html')
 
 def provider_payout(request):
     return render(request, 'provider/provider-payout.html')
@@ -100,12 +110,71 @@ def provider_earnings(request):
 def provider_chat(request):
     return render(request, 'provider/provider-chat.html')
 
-def register(request):
-    """Handle GET/POST for user registration.
+def provider_appointment_settings(request):
+    return render(request, 'provider/provider-appointment-settings.html')
 
-    POST fields: username, email, phone (optional), password
-    Creates a Django User and a UserProfile record.
-    """
+def provider_accounts_settings(request):
+    return render(request, 'provider/provider-accounts-settings.html')
+
+def provider_social_profile(request):
+    return render(request, 'provider/provider-social-profile.html')
+
+def provider_security_settings(request):
+    return render(request, 'provider/provider-security-settings.html')
+
+def provider_plan(request):
+    return render(request, 'provider/provider-plan.html')
+
+def provider_payment_settings(request):
+    return render(request, 'provider/payment-settings.html')
+
+def provider_notifications(request):
+    return render(request, 'provider/provider-notifcations.html')
+
+def provider_connected_apps(request):
+    return render(request, 'provider/provider-connected-apps.html')
+
+def provider_verification(request):
+    return render(request, 'provider/provider-verification.html')
+
+def provider_delete_account(request):
+    return render(request, 'provider/provider-delete-account.html')
+
+def provider_login(request):
+    return render(request, 'provider/provider-login.html')
+
+def provider_register(request):
+    """Handle GET/POST for provider registration."""
+    if request.method == 'POST':
+        # Handle provider registration logic
+        pass
+    return render(request, 'provider/provider-register.html')
+
+def reset_password(request):
+    return render(request, 'urbanapp/reset-password.html')
+
+def admindash(request):
+    return render(request,'admin/index.html')
+
+def add_service(request):
+    return render(request,'admin/add-service.html')
+
+def admin_service(request):
+    return render(request,'admin/services.html')
+
+def admin_service_settings(request):
+    return render(request,'admin/service-settings.html')
+
+def admin_sub_categories(request):
+    return render(request,'admin/sub-categories.html')
+
+def admin_categories(request):
+    return render(request,'admin/categories.html')
+
+def admin_signin(request):
+    return render(request,'admin/signin.html')
+
+def register(request):
     if request.method == 'POST':
         username = request.POST.get('username', '').strip()
         # first_name removed from form; keep empty

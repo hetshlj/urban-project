@@ -1,0 +1,726 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{% block content %}
+
+        <div class="page-wrapper">
+            <div class="content">
+                <div class="row">
+                    <div class="col-lg-12 m-auto">
+						<div class="progressbar-card">
+							<ul id="progress-head">
+								<li class="active">Add Service - Service Information</li>
+								<li>Add Service - Availablity</li>
+								<li>Add Service - Location</li>
+								<li>Add Service - Gallery</li>
+								<li>Add Service - SEO</li>
+							</ul>
+							<ul id="progressbar">
+								<li class="active">
+									<div class="multi-step-icon">
+										<span><i class="far fa-check-circle"></i></span>
+									</div>
+									<div class="multi-step-info">
+										<h6>Information</h6>
+									</div>
+								</li>
+								<li>
+									<div class="multi-step-icon">
+										<span><i class="far fa-clock"></i></span>
+									</div>
+									<div class="multi-step-info">
+										<h6>Availability</h6>
+									</div>
+								</li>
+								<li>
+									<div class="multi-step-icon">
+										<span><i class="far fa-map"></i></span>
+									</div>
+									<div class="multi-step-info">
+										<h6>Location</h6>
+									</div>
+								</li>
+								<li>
+									<div class="multi-step-icon">
+										<span><i class="far fa-images"></i></span>
+									</div>
+									<div class="multi-step-info">
+										<h6>Gallery</h6>
+									</div>
+								</li>
+								<li>
+									<div class="multi-step-icon">
+										<span><i class="far fa-chart-bar"></i></span>
+									</div>
+									<div class="multi-step-info">
+										<h6>SEO</h6>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<!-- Service Information -->
+						<fieldset id="first-field">
+							<div class="container-service space-service">
+								<div class="sub-title">
+									<h6>Service Information</h6>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Provider</label>
+											<select class="select">
+												 <option>Select Provider</option>
+												<option>Johnny</option>
+												<option>James</option>
+											 </select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Service Title</label>
+											<input type="text" class="form-control" placeholder="">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Category</label>
+											<select class="select">
+												<option>Select Category</option>
+											   <option>Car Wash</option>
+											   <option>House Cleaning</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Sub Category</label>
+											<select class="select">
+												<option>Select Sub Category</option>
+											   <option>car Repair</option>
+											   <option>Plumbing</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group price">
+											<label>Price <span>Set 0 for free</span></label>
+											<input type="text" class="form-control" placeholder="">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Duration</label>
+											<div class="form-duration">
+												<input type="text" class="form-control" placeholder="">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group service-editor">
+											<label>Description</label>
+											<div id="editor"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="container-service">
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="additional">
+											<div class="sub-title Service">
+												<h6>Additional Service</h6>
+											</div>
+											<div class="status-toggle float-sm-end mb-3">
+												<input type="checkbox" id="status_1" class="check" checked="">
+												<label for="status_1" class="checktoggle">checkbox</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="addservice-info">
+									<div class="row service-cont">
+										<div class="col-md-4">
+											<div class="form-group">
+												<label>Additional Service</label>
+												<input type="text" class="form-control" placeholder="Enter Service">
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-group">
+												<label>Price</label>
+												<input type="text" class="form-control" placeholder="Enter Price">
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-group tax">
+												<label>Duration <span>Include tax</span></label>
+												<input type="text" class="form-control" placeholder="Enter Service Duration">
+											</div>
+										</div>
+									</div>
+								</div>
+								<a href="javascript:void(0);" class="link-sets add-extra"><i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Additional Service</a>
+							</div>
+							<div class="container-service space-service">
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="video">
+											<div class="video-title">
+												<h6>Video</h6>
+											</div>
+										</div>
+										<div class="video-link">
+											<div class="form-group">
+												<label>Video Link</label>
+												<input type="text" class="form-control" placeholder="https://www.youtube.com/shorts/Lf-Z7H8bZ8o">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="bottom-btn">
+										<div class="field-btns">
+											<button class="btn btn-primary next_btn" type="button">Next <i class="fas fa-arrow-right"></i></button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						<!-- /Service Information -->
+
+						<!-- Availablity-->
+						<fieldset>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="available-section card-section ">
+										<div class="available-heading">
+											<h4>Availablity</h4>
+										</div>
+
+										<!-- Timeslot -->
+										<div class="timeslot-sec availablt-time-slots">
+											<!-- Schedule Nav -->
+											<label class="col-form-label">Configure Time Slots</label>
+											<div class="schedule-nav">
+												<ul class="nav">
+													<li class="nav-item">
+														<a class="nav-link active" data-bs-toggle="tab" href="#all_days">All Days</a>
+													</li>
+													<li class="nav-item">
+														<a class="nav-link" data-bs-toggle="tab" href="#slot_monday">Monday</a>
+													</li>
+													<li class="nav-item">
+														<a class="nav-link" data-bs-toggle="tab" href="#slot_tuesday">Tuesday</a>
+													</li>
+													<li class="nav-item">
+														<a class="nav-link" data-bs-toggle="tab" href="#slot_wednesday">Wednesday</a>
+													</li>
+													<li class="nav-item">
+														<a class="nav-link" data-bs-toggle="tab" href="#slot_thursday">Thursday</a>
+													</li>
+													<li class="nav-item">
+														<a class="nav-link" data-bs-toggle="tab" href="#slot_friday">Friday</a>
+													</li>
+													<li class="nav-item">
+														<a class="nav-link" data-bs-toggle="tab" href="#slot_saturday">Saturday</a>
+													</li>
+													<li class="nav-item">
+														<a class="nav-link" data-bs-toggle="tab" href="#slot_sunday">Sunday</a>
+													</li>
+												</ul>
+											</div>
+											<!-- /Schedule Nav -->
+
+											<div class="tab-content pt-0">
+												<div class="tab-pane active" id="all_days">
+													<div class="hours-info">
+														<h4 class="nameof-day">All Days</h4>
+														<div class="row hours-cont">
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label>From</label>
+																	<div class="form-availability-field">
+																		<input type="text" class="form-control timepicker" placeholder="Select Time">
+																		<span class="cus-icon"><i class="fe fe-clock"></i></span>
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label>To</label>
+																	<div class="form-availability-field">
+																		<input type="text" class="form-control timepicker" placeholder="Select Time">
+																		<span class="cus-icon"><i class="fe fe-clock"></i></span>
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label>Slots</label>
+																	<input type="text" class="form-control" placeholder="Enter Slot">
+																</div>
+															</div>
+														</div>
+													</div>
+													<a href="#" class="link-sets add-text add-hours"><i class="fe fe-plus-circle"></i> Add More</a>
+												</div>
+												<div class="tab-pane fade" id="slot_monday">
+													<div class="hours-info">
+														<h4 class="nameof-day">Monday</h4>
+														<div class="row hours-cont">
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label>From</label>
+																	<div class="form-availability-field">
+																		<input type="text" class="form-control timepicker" placeholder="Select Time">
+																		<span class="cus-icon"><i class="fe fe-clock"></i></span>
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label>To</label>
+																	<div class="form-availability-field">
+																		<input type="text" class="form-control timepicker" placeholder="Select Time">
+																		<span class="cus-icon"><i class="fe fe-clock"></i></span>
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label>Slots</label>
+																	<input type="text" class="form-control" placeholder="Enter Slot">
+																</div>
+															</div>
+														</div>
+													</div>
+													<a href="#" class="link-sets add-text add-hours"><i class="fe fe-plus-circle"></i> Add More</a>
+												</div>
+												<div class="tab-pane fade" id="slot_tuesday">
+													<div class="hours-info">
+														<h4 class="nameof-day">Tuesday</h4>
+														<div class="row hours-cont">
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label>From</label>
+																	<div class="form-availability-field">
+																		<input type="text" class="form-control timepicker" placeholder="Select Time">
+																		<span class="cus-icon"><i class="fe fe-clock"></i></span>
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label>To</label>
+																	<div class="form-availability-field">
+																		<input type="text" class="form-control timepicker" placeholder="Select Time">
+																		<span class="cus-icon"><i class="fe fe-clock"></i></span>
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label>Slots</label>
+																	<input type="text" class="form-control" placeholder="Enter Slot">
+																</div>
+															</div>
+														</div>
+													</div>
+													<a href="#" class="link-sets add-text add-hours"><i class="fe fe-plus-circle"></i> Add More</a>
+												</div>
+												<div class="tab-pane fade" id="slot_wednesday">
+													<div class="hours-info">
+														<h4 class="nameof-day">Wednesday</h4>
+														<div class="row hours-cont">
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label>From</label>
+																	<div class="form-availability-field">
+																		<input type="text" class="form-control timepicker" placeholder="Select Time">
+																		<span class="cus-icon"><i class="fe fe-clock"></i></span>
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label>To</label>
+																	<div class="form-availability-field">
+																		<input type="text" class="form-control timepicker" placeholder="Select Time">
+																		<span class="cus-icon"><i class="fe fe-clock"></i></span>
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label>Slots</label>
+																	<input type="text" class="form-control" placeholder="Enter Slot">
+																</div>
+															</div>
+														</div>
+													</div>
+													<a href="#" class="link-sets add-text add-hours"><i class="fe fe-plus-circle"></i> Add More</a>
+												</div>
+												<div class="tab-pane fade" id="slot_thursday">
+													<div class="hours-info">
+														<h4 class="nameof-day">Thursday</h4>
+														<div class="row hours-cont">
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label>From</label>
+																	<div class="form-availability-field">
+																		<input type="text" class="form-control timepicker" placeholder="Select Time">
+																		<span class="cus-icon"><i class="fe fe-clock"></i></span>
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label>To</label>
+																	<div class="form-availability-field">
+																		<input type="text" class="form-control timepicker" placeholder="Select Time">
+																		<span class="cus-icon"><i class="fe fe-clock"></i></span>
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label>Slots</label>
+																	<input type="text" class="form-control" placeholder="Enter Slot">
+																</div>
+															</div>
+														</div>
+													</div>
+													<a href="#" class="link-sets add-text add-hours"><i class="fe fe-plus-circle"></i> Add More</a>
+												</div>
+												<div class="tab-pane fade" id="slot_friday">
+													<div class="hours-info">
+														<h4 class="nameof-day">Friday</h4>
+														<div class="row hours-cont">
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label>From</label>
+																	<div class="form-availability-field">
+																		<input type="text" class="form-control timepicker" placeholder="Select Time">
+																		<span class="cus-icon"><i class="fe fe-clock"></i></span>
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label>To</label>
+																	<div class="form-availability-field">
+																		<input type="text" class="form-control timepicker" placeholder="Select Time">
+																		<span class="cus-icon"><i class="fe fe-clock"></i></span>
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label>Slots</label>
+																	<input type="text" class="form-control" placeholder="Enter Slot">
+																</div>
+															</div>
+														</div>
+													</div>
+													<a href="#" class="link-sets add-text add-hours"><i class="fe fe-plus-circle"></i> Add More</a>
+												</div>
+												<div class="tab-pane fade" id="slot_saturday">
+													<div class="hours-info">
+														<h4 class="nameof-day">Saturday</h4>
+														<div class="row hours-cont">
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label>From</label>
+																	<div class="form-availability-field">
+																		<input type="text" class="form-control timepicker" placeholder="Select Time">
+																		<span class="cus-icon"><i class="fe fe-clock"></i></span>
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label>To</label>
+																	<div class="form-availability-field">
+																		<input type="text" class="form-control timepicker" placeholder="Select Time">
+																		<span class="cus-icon"><i class="fe fe-clock"></i></span>
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label>Slots</label>
+																	<input type="text" class="form-control" placeholder="Enter Slot">
+																</div>
+															</div>
+														</div>
+													</div>
+													<a href="#" class="link-sets add-text add-hours"><i class="fe fe-plus-circle"></i> Add More</a>
+												</div>
+												<div class="tab-pane fade" id="slot_sunday">
+													<div class="hours-info">
+														<h4 class="nameof-day">Sunday</h4>
+														<div class="row hours-cont">
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label>From</label>
+																	<div class="form-availability-field">
+																		<input type="text" class="form-control timepicker" placeholder="Select Time">
+																		<span class="cus-icon"><i class="fe fe-clock"></i></span>
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label>To</label>
+																	<div class="form-availability-field">
+																		<input type="text" class="form-control timepicker" placeholder="Select Time">
+																		<span class="cus-icon"><i class="fe fe-clock"></i></span>
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-4">
+																<div class="form-group ">
+																	<label>Slots</label>
+																	<input type="text" class="form-control" placeholder="Enter Slot">
+																</div>
+															</div>
+														</div>
+													</div>
+													<a href="#" class="link-sets add-text add-hours"><i class="fe fe-plus-circle"></i> Add More</a>
+												</div>
+											</div>
+
+										</div>
+										<!-- Timeslot -->
+
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="bottom-btn">
+										<div class="field-btns">
+											<button class="btn btn-prev prev_btn" type="button"><i class="fas fa-arrow-left"></i> Prev</button>
+											<button class="btn btn-primary next_btn" type="button">Next <i class="fas fa-arrow-right"></i></button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						<!-- /Availablity -->
+
+						<!-- Location -->
+						<fieldset>
+							<div class="addition-service card-section space-service">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="heading-service">
+											<h4>Location</h4>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<label>Address</label>
+											<input type="text" class="form-control" placeholder="Enter Your Address">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Contry</label>
+											<input type="text" class="form-control" placeholder="Enter Sub Category">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>City</label>
+											<input type="text" class="form-control" placeholder="Enter Your City">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>State</label>
+											<input type="text" class="form-control" placeholder="Enter Your State">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Pincode</label>
+											<input type="text" class="form-control" placeholder="Enter Your Pincode">
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<label>Google Maps Place ID</label>
+											<input type="text" class="form-control" placeholder="Enter Maps Place ID">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Latitude</label>
+											<input type="text" class="form-control" placeholder="Enter Latitude Number">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Longitude</label>
+											<input type="text" class="form-control" placeholder="Enter Longitude Number">
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<div class="map-grid">
+												<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6509170.989457427!2d-123.80081967108484!3d37.192957227641294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb9fe5f285e3d%3A0x8b5109a227086f55!2sCalifornia%2C%20USA!5e0!3m2!1sen!2sin!4v1669181581381!5m2!1sen!2sin" allowfullscreen="" aria-hidden="false" tabindex="0" class="contact-map"></iframe>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="bottom-btn">
+										<div class="field-btns">
+											<button class="btn btn-prev prev_btn" type="button"><i class="fas fa-arrow-left"></i> Prev</button>
+											<button class="btn btn-primary next_btn" type="button">Next <i class="fas fa-arrow-right"></i></button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						<!-- /Location -->
+
+						<!-- Gallery -->
+						<fieldset>
+							<div class="addition-service card-section ">
+								<div class="heading-service">
+									<h4>Gallery</h4>
+								</div>
+								<div class="form-uploads">
+									<div class="form-uploads-path">
+										<img src="assets/img/icons/upload.svg" alt="img">
+										<div class="file-browse">
+											<h6>Drag & drop image or </h6>
+											<div class="file-browse-path">
+												<input type="file">
+												<a href="javascript:void(0);"> Browse</a>
+											</div>
+										</div>
+										<h5>Supported formates: JPEG, PNG</h5>
+									</div>
+								</div>
+								<div class="file-preview">
+									<label class="form-label">Select Default Image</label>
+									<ul class="gallery-selected-img">
+										<li>
+											<div class="img-preview">
+												<img src="assets/img/services/service-01.jpg" alt="Service Image">
+												<a href="javascript:void(0);" class="remove-gallery"><i class="fe fe-trash-2"></i></a>
+											</div>
+											<label class="custom_check">
+												<input type="radio" name="gallery" checked>
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<div class="img-preview">
+												<img src="assets/img/services/service-02.jpg" alt="Service">
+												<a href="javascript:void(0);" class="remove-gallery"><i class="fe fe-trash-2"></i></a>
+											</div>
+											<label class="custom_check">
+												<input type="radio" name="gallery">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<div class="img-preview">
+												<img src="assets/img/services/service-03.jpg" alt="Service Image">
+												<a href="javascript:void(0);" class="remove-gallery"><i class="fe fe-trash-2"></i></a>
+											</div>
+											<label class="custom_check">
+												<input type="radio" name="gallery">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<div class="img-preview">
+												<img src="assets/img/services/service-04.jpg" class="img-fluid thumbnail" alt="image">
+												<a href="javascript:void(0);" class="remove-gallery"><i class="fe fe-trash-2"></i></a>
+											</div>
+											<label class="custom_check">
+												<input type="radio" name="gallery">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="bottom-btn">
+								<div class="field-btns">
+									<button class="btn btn-prev prev_btn" type="button"><i class="fas fa-arrow-left"></i> Prev</button>
+									<button class="btn btn-primary next_btn" type="button">Next <i class="fas fa-arrow-right"></i></button>
+								</div>
+							</div>
+						</fieldset>
+						<!-- /Gallery -->
+
+						<!-- SEO -->
+						<fieldset>
+							<div class="addition-service card-section space-service">
+								<div class="heading-service">
+									<h4>SEO</h4>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label>Meta Title (English)</label>
+											<input type="text" class="form-control" placeholder="Enter metatitle">
+										</div>
+									</div>
+									<div class="col-lg-12">
+										<div class="form-group meta-keys">
+											<label>Meta Keywords (English)</label>
+											<input class="input-tags form-control" type="text" data-role="tagsinput"  name="specialist" placeholder="Enter keywords" id="specialist">
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<label>Meta Description (English)</label>
+											<textarea class="form-control" placeholder="Enter description" rows="5"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="bottom-btn">
+								<div class="field-btns">
+									<button class="btn btn-prev prev_btn" type="button"><i class="fas fa-arrow-left"></i> Prev</button>
+									<a href="services.html" class="btn btn-primary next_btn" data-bs-toggle="modal" data-bs-target="#successmodal">Save</a>
+								</div>
+							</div>
+						</fieldset>
+						<!-- /SEO -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<!-- Modal Succss -->
+	<div class="modal fade add-service-modal" id="successmodal" tabindex="-1" aria-labelledby="successmodal" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-body">
+				<span>
+					<i class="fa-regular fa-circle-check"></i>
+				</span>
+				<h3>Success</h3>
+				<p>Service has been created succeessfully</p>
+				<div class="popup-btn">
+					<a href="services.html" class="btn btn-primary">Go to Dashboard <i class="fa-solid fa-arrow-right"></i></a>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+	<!-- Modal Success -->
+{% endblock %}
